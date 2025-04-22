@@ -1,3 +1,56 @@
-export default function Home() {
-  return <main></main>;
+'use client';
+import FormButton from '@/components/ui/form/FormButton';
+import FormInput from '@/components/ui/form/FormInput';
+import { Smile } from 'lucide-react';
+import { startTransition, useActionState } from 'react';
+import { handleForm } from './actions';
+
+export default function LoginPage() {
+  const [state, action] = useActionState(handleForm, {});
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    startTransition(() => action(formData));
+  };
+
+  return (
+    <main className="flex min-h-screen items-center justify-center bg-white">
+      <section className="w-full max-w-md rounded-lg p-8">
+        <figure className="mb-8 flex justify-center">
+          <Smile className="size-14 text-cyan-400" />
+        </figure>
+        <form onSubmit={onSubmit} className="space-y-4">
+          <FormInput
+            icon="email"
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+          />
+          <FormInput
+            icon="username"
+            type="text"
+            name="username"
+            placeholder="Username"
+            required
+          />
+          <FormInput
+            icon="password"
+            type="password"
+            name="password"
+            placeholder="Password"
+            isError={!!state.fieldErrors?.password}
+            required
+          />
+          <FormButton
+            text="Log in"
+            errorMessage={state.fieldErrors?.password}
+            successMessage={state.message}
+            type="submit"
+          />
+        </form>
+      </section>
+    </main>
+  );
 }
