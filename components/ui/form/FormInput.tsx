@@ -8,6 +8,7 @@ interface IFormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon: IconType;
   containerClassName?: string;
   isError?: boolean;
+  errorMessage?: string;
 }
 
 const FormInput: React.FC<IFormInputProps> = ({
@@ -15,6 +16,7 @@ const FormInput: React.FC<IFormInputProps> = ({
   className,
   containerClassName,
   isError = false,
+  errorMessage,
   ...props
 }) => {
   const renderIcon = () => {
@@ -31,21 +33,26 @@ const FormInput: React.FC<IFormInputProps> = ({
   };
 
   return (
-    <div className={cn('relative', containerClassName)}>
-      <div className="absolute inset-y-0 left-0 flex items-center pl-4">
-        {renderIcon()}
+    <div className={cn('space-y-1', containerClassName)}>
+      <div className="relative">
+        <div className="absolute inset-y-0 left-0 flex items-center pl-4">
+          {renderIcon()}
+        </div>
+        <input
+          className={cn(
+            'w-full rounded-full border border-neutral-200 py-3 pl-12 pr-4',
+            'focus:border-transparent focus:outline-none focus:ring-4 focus:ring-neutral-300',
+            'transition',
+            'placeholder:text-neutral-300',
+            isError && 'border-red-200 ring-2 ring-red-300 focus:ring-red-400',
+            className
+          )}
+          {...props}
+        />
       </div>
-      <input
-        className={cn(
-          'w-full rounded-full border border-neutral-200 py-3 pl-12 pr-4',
-          'focus:border-transparent focus:outline-none focus:ring-4 focus:ring-neutral-300',
-          'transition',
-          'placeholder:text-neutral-300',
-          isError && 'border-red-200 ring-2 ring-red-300 focus:ring-red-400',
-          className
-        )}
-        {...props}
-      />
+      {isError && errorMessage && (
+        <div className="px-1 text-sm text-red-500">{errorMessage}</div>
+      )}
     </div>
   );
 };

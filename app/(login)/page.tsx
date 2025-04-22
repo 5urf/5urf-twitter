@@ -41,15 +41,16 @@ export default function LoginPage() {
             name="password"
             placeholder="Password"
             isError={!!state.fieldErrors?.password}
+            errorMessage={state.fieldErrors?.password}
             required
           />
-          <FormButton
-            text="Log in"
-            errorMessage={state.fieldErrors?.password}
-            successMessage={state.message}
-            type="submit"
-          />
+          <FormButton text="Log in" type="submit" />
         </form>
+        {state.message && (
+          <div className="mt-4 text-center text-sm text-green-500">
+            {state.message}
+          </div>
+        )}
       </section>
     </main>
   );
