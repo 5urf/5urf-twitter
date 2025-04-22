@@ -7,12 +7,14 @@ type IconType = 'email' | 'username' | 'password';
 interface IFormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon: IconType;
   containerClassName?: string;
+  isError?: boolean;
 }
 
 const FormInput: React.FC<IFormInputProps> = ({
   icon,
   className,
   containerClassName,
+  isError = false,
   ...props
 }) => {
   const renderIcon = () => {
@@ -39,6 +41,7 @@ const FormInput: React.FC<IFormInputProps> = ({
           'focus:border-transparent focus:outline-none focus:ring-4 focus:ring-neutral-300',
           'transition',
           'placeholder:text-neutral-300',
+          isError && 'border-red-200 ring-2 ring-red-300 focus:ring-red-400',
           className
         )}
         {...props}
