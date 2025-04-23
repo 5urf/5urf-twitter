@@ -1,6 +1,7 @@
 'use client';
 import FormButton from '@/components/ui/form/FormButton';
 import FormInput from '@/components/ui/form/FormInput';
+import { LOGIN_VALIDATION } from '@/lib/constants';
 import { Smile } from 'lucide-react';
 import { startTransition, useActionState } from 'react';
 import { handleForm } from './actions';
@@ -34,7 +35,7 @@ export default function LoginPage() {
             type="text"
             name="username"
             placeholder="Username"
-            minLength={5}
+            minLength={LOGIN_VALIDATION.MIN_LENGTH.USERNAME}
             errorMessages={state.fieldErrors?.username}
             required
           />
@@ -43,7 +44,7 @@ export default function LoginPage() {
             type="password"
             name="password"
             placeholder="Password"
-            minLength={10}
+            minLength={LOGIN_VALIDATION.MIN_LENGTH.PASSWORD}
             errorMessages={state.fieldErrors?.password}
             required
           />

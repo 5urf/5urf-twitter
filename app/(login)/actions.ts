@@ -1,31 +1,44 @@
 'use server';
 
+import { LOGIN_VALIDATION } from '@/lib/constants';
 import { z } from 'zod';
 
 const loginFormSchema = z.object({
   email: z
     .string({
-      required_error: 'Email is required',
-      invalid_type_error: 'Email must be a string',
+      required_error: LOGIN_VALIDATION.ERROR_MESSAGES.EMAIL.REQUIRED,
+      invalid_type_error: LOGIN_VALIDATION.ERROR_MESSAGES.EMAIL.INVALID_TYPE,
     })
-    .email('Invalid email format')
+    .email(LOGIN_VALIDATION.ERROR_MESSAGES.EMAIL.INVALID_FORMAT)
     .trim()
     .toLowerCase()
-    .regex(/@zod\.com$/, 'Only @zod.com emails are allowed'),
+    .regex(
+      LOGIN_VALIDATION.PATTERNS.EMAIL_DOMAIN,
+      LOGIN_VALIDATION.ERROR_MESSAGES.EMAIL.DOMAIN
+    ),
   username: z
     .string({
-      required_error: 'Username is required',
-      invalid_type_error: 'Username must be a string',
+      required_error: LOGIN_VALIDATION.ERROR_MESSAGES.USERNAME.REQUIRED,
+      invalid_type_error: LOGIN_VALIDATION.ERROR_MESSAGES.USERNAME.INVALID_TYPE,
     })
-    .min(5, 'Username should be at least 5 characters long.')
+    .min(
+      LOGIN_VALIDATION.MIN_LENGTH.USERNAME,
+      LOGIN_VALIDATION.ERROR_MESSAGES.USERNAME.TOO_SHORT
+    )
     .trim(),
   password: z
     .string({
-      required_error: 'Password is required',
-      invalid_type_error: 'Password must be a string',
+      required_error: LOGIN_VALIDATION.ERROR_MESSAGES.PASSWORD.REQUIRED,
+      invalid_type_error: LOGIN_VALIDATION.ERROR_MESSAGES.PASSWORD.INVALID_TYPE,
     })
-    .min(10, 'Password should be at least 10 characters long')
-    .regex(/\d/, 'Password should contain at least one number (0123456789)'),
+    .min(
+      LOGIN_VALIDATION.MIN_LENGTH.PASSWORD,
+      LOGIN_VALIDATION.ERROR_MESSAGES.PASSWORD.TOO_SHORT
+    )
+    .regex(
+      LOGIN_VALIDATION.PATTERNS.CONTAINS_NUMBER,
+      LOGIN_VALIDATION.ERROR_MESSAGES.PASSWORD.NO_NUMBER
+    ),
 });
 
 type FormResult = {
