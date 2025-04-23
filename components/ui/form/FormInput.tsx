@@ -7,26 +7,26 @@ type IconType = 'email' | 'username' | 'password';
 interface IFormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon: IconType;
   containerClassName?: string;
-  isError?: boolean;
-  errorMessage?: string;
+  errorMessages?: string[];
 }
 
 const FormInput: React.FC<IFormInputProps> = ({
   icon,
   className,
   containerClassName,
-  isError = false,
-  errorMessage,
+  errorMessages = [],
   ...props
 }) => {
+  const hasError = errorMessages.length > 0;
+
   const renderIcon = () => {
     switch (icon) {
       case 'email':
-        return <Mail className="h-5 w-5" />;
+        return <Mail className="size-5" />;
       case 'username':
-        return <User className="h-5 w-5" />;
+        return <User className="size-5" />;
       case 'password':
-        return <Lock className="h-5 w-5" />;
+        return <Lock className="size-5" />;
       default:
         return null;
     }
@@ -44,14 +44,20 @@ const FormInput: React.FC<IFormInputProps> = ({
             'focus:border-transparent focus:outline-none focus:ring-4 focus:ring-neutral-300',
             'transition',
             'placeholder:text-neutral-300',
-            isError && 'border-red-200 ring-2 ring-red-300 focus:ring-red-400',
+            hasError && 'border-red-200 ring-2 ring-red-300 focus:ring-red-400',
             className
           )}
           {...props}
         />
       </div>
-      {isError && errorMessage && (
-        <div className="px-1 text-sm text-red-500">{errorMessage}</div>
+      {hasError && (
+        <div className="px-1">
+          {errorMessages.map((error, index) => (
+            <small key={index} className="block text-red-500">
+              {error}
+            </small>
+          ))}
+        </div>
       )}
     </div>
   );

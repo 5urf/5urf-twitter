@@ -26,6 +26,7 @@ export default function LoginPage() {
             type="email"
             name="email"
             placeholder="Email"
+            errorMessages={state.fieldErrors?.email}
             required
           />
           <FormInput
@@ -33,6 +34,8 @@ export default function LoginPage() {
             type="text"
             name="username"
             placeholder="Username"
+            minLength={5}
+            errorMessages={state.fieldErrors?.username}
             required
           />
           <FormInput
@@ -40,8 +43,8 @@ export default function LoginPage() {
             type="password"
             name="password"
             placeholder="Password"
-            isError={!!state.fieldErrors?.password}
-            errorMessage={state.fieldErrors?.password}
+            minLength={10}
+            errorMessages={state.fieldErrors?.password}
             required
           />
           <FormButton text="Log in" type="submit" />
