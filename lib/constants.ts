@@ -16,6 +16,7 @@ export const ACCOUNT_VALIDATION = {
       INVALID_FORMAT: 'Invalid email format',
       DOMAIN: 'Only @zod.com emails are allowed',
       DUPLICATE: 'This username is already taken',
+      NOT_FOUND: 'An account with this email does not exist',
     },
     USERNAME: {
       REQUIRED: 'Username is required',

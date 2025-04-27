@@ -3,6 +3,7 @@
 import { ACCOUNT_VALIDATION } from '@/lib/constants';
 import db from '@/lib/db';
 import { getSession } from '@/lib/session';
+import { FormActionState } from '@/types/formActionState';
 import bcrypt from 'bcryptjs';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
@@ -85,12 +86,6 @@ const accountFormSchema = z
     message: ACCOUNT_VALIDATION.ERROR_MESSAGES.PASSWORD.CONFIRM,
     path: ['confirmPassword'],
   });
-
-export type FormActionState = {
-  fieldErrors?: Record<string, string[]>;
-  formErrors?: string[];
-  message?: string;
-};
 
 export async function createAccount(
   _: FormActionState,
