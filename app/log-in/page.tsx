@@ -16,7 +16,7 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-white">
+    <main className="flex min-h-screen items-center justify-center">
       <section className="w-full max-w-md rounded-lg p-8">
         <figure className="mb-8 flex flex-col items-center justify-center gap-2 *:font-medium">
           <Smile className="size-14 text-cyan-400" />
