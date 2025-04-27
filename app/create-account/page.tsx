@@ -1,13 +1,13 @@
 'use client';
 import FormButton from '@/components/ui/form/FormButton';
 import FormInput from '@/components/ui/form/FormInput';
-import { LOGIN_VALIDATION } from '@/lib/constants';
+import { ACCOUNT_VALIDATION } from '@/lib/constants';
 import { Smile } from 'lucide-react';
 import { startTransition, useActionState } from 'react';
-import { handleForm } from './actions';
+import { createAccount } from './actions';
 
-export default function LoginPage() {
-  const [state, action] = useActionState(handleForm, {});
+export default function CreateAccountPage() {
+  const [state, action] = useActionState(createAccount, {});
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,8 +18,9 @@ export default function LoginPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-white">
       <section className="w-full max-w-md rounded-lg p-8">
-        <figure className="mb-8 flex justify-center">
+        <figure className="mb-8 flex flex-col items-center justify-center gap-2 *:font-medium">
           <Smile className="size-14 text-cyan-400" />
+          <h2 className="text-xl">Fill in the form below to join!</h2>
         </figure>
         <form onSubmit={onSubmit} className="space-y-4">
           <FormInput
@@ -27,7 +28,7 @@ export default function LoginPage() {
             type="email"
             name="email"
             placeholder="Email"
-            errorMessages={state.fieldErrors?.email}
+            errorMessages={state?.fieldErrors?.email}
             required
           />
           <FormInput
@@ -35,7 +36,7 @@ export default function LoginPage() {
             type="text"
             name="username"
             placeholder="Username"
-            minLength={LOGIN_VALIDATION.MIN_LENGTH.USERNAME}
+            minLength={ACCOUNT_VALIDATION.MIN_LENGTH.USERNAME}
             errorMessages={state.fieldErrors?.username}
             required
           />
@@ -44,17 +45,21 @@ export default function LoginPage() {
             type="password"
             name="password"
             placeholder="Password"
-            minLength={LOGIN_VALIDATION.MIN_LENGTH.PASSWORD}
+            minLength={ACCOUNT_VALIDATION.MIN_LENGTH.PASSWORD}
             errorMessages={state.fieldErrors?.password}
             required
           />
-          <FormButton text="Log in" type="submit" />
+          <FormInput
+            icon="password"
+            name="confirmPassword"
+            type="password"
+            placeholder="Confirm Password"
+            errorMessages={state.fieldErrors?.confirmPassword}
+            minLength={ACCOUNT_VALIDATION.MIN_LENGTH.PASSWORD}
+            required
+          />
+          <FormButton text="Create account" type="submit" />
         </form>
-        {state.message && (
-          <div className="mt-4 text-center text-sm text-green-500">
-            {state.message}
-          </div>
-        )}
       </section>
     </main>
   );
