@@ -3,6 +3,7 @@ import FormButton from '@/components/ui/form/FormButton';
 import FormInput from '@/components/ui/form/FormInput';
 import { ACCOUNT_VALIDATION } from '@/lib/constants';
 import { Smile } from 'lucide-react';
+import Link from 'next/link';
 import { startTransition, useActionState } from 'react';
 import { login } from './actions';
 
@@ -42,6 +43,12 @@ export default function LoginPage() {
           />
           <FormButton text="Log in" type="submit" />
         </form>
+        <Link
+          href="/create-account"
+          className="primary-btn mt-4 flex justify-center rounded-full text-lg"
+        >
+          회원가입
+        </Link>
       </section>
     </main>
   );
