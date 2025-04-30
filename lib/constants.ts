@@ -33,3 +33,14 @@ export const ACCOUNT_VALIDATION = {
     },
   },
 };
+
+export const TWEET_VALIDATION = {
+  MIN_LENGTH: 1,
+  MAX_LENGTH: 200,
+
+  ERROR_MESSAGES: {
+    REQUIRED: 'Tweet content is required',
+    TOO_SHORT: 'Tweet content is required',
+    TOO_LONG: 'Tweet cannot exceed 200 characters',
+  },
+};
