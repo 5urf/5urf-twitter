@@ -1,3 +1,4 @@
+import AddTweet from '@/components/ui/ AddTweet';
 import Pagination from '@/components/ui/Pagination';
 import TweetList from '@/components/ui/TweetList';
 import db from '@/lib/db';
@@ -53,6 +54,7 @@ export default async function HomePage({ searchParams }: IHomePagePageProps) {
   return (
     <main className="mx-auto max-w-lg px-4 pb-10 pt-10">
       <h1 className="mb-10 text-2xl font-bold">홈</h1>
+      <AddTweet />
       <TweetList tweets={tweets} />
       <Pagination currentPage={page} totalPages={totalPages} />
     </main>

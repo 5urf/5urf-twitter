@@ -1,4 +1,4 @@
-import { Tweets } from '@/app/(tabs)/page';
+import { Tweets } from '@/app/(tabs)/(home)/page';
 import { formatToKorDate } from '@/lib/format';
 import { cn } from '@/lib/utils';
 import { Heart } from 'lucide-react';
