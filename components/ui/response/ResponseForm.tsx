@@ -25,7 +25,8 @@ export default function ResponseForm({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!responseText.trim()) return;
+
+    if (invaild) return;
 
     const formData = new FormData(e.currentTarget);
 
