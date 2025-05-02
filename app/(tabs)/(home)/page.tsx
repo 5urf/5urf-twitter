@@ -1,4 +1,4 @@
-import AddTweet from '@/components/ui/ AddTweet';
+import AddTweet from '@/components/ui/AddTweet';
 import Pagination from '@/components/ui/Pagination';
 import TweetList from '@/components/ui/TweetList';
 import db from '@/lib/db';

@@ -1,7 +1,9 @@
 import LikeButton from '@/components/ui/LikeButton';
+import ResponseContainer from '@/components/ui/response/ResponseContainer';
 import db from '@/lib/db';
 import { formatToKorDate } from '@/lib/format';
 import { getSession } from '@/lib/session';
+import { getCurrentUsername } from '@/lib/user';
 import { ArrowLeft } from 'lucide-react';
 import { unstable_cache as nextCache } from 'next/cache';
 import Link from 'next/link';
@@ -61,6 +63,34 @@ async function getLikeStatus(tweetId: number, userId: number) {
   };
 }
 
+async function getResponses(tweetId: number) {
+  const responses = await db.response.findMany({
+    where: {
+      tweetId,
+    },
+    include: {
+      user: {
+        select: {
+          id: true,
+          username: true,
+        },
+      },
+    },
+    orderBy: {
+      created_at: 'desc',
+    },
+  });
+
+  return responses;
+}
+
+async function getCachedResponses(tweetId: number) {
+  const cachedOperation = nextCache(getResponses, ['tweet-responses'], {
+    tags: [`tweet-responses-${tweetId}`],
+  });
+  return cachedOperation(tweetId);
+}
+
 async function getCachedLikeStatus(tweetId: number) {
   const session = await getSession();
   const userId = session.id;
@@ -88,6 +118,10 @@ export default async function TweetDetailPage({
   const isOwner = await getIsOwner(tweet.userId);
 
   const { likeCount, isLiked } = await getCachedLikeStatus(id);
+
+  const responses = await getCachedResponses(id);
+
+  const currentUsername = await getCurrentUsername();
 
   return (
     <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
@@ -128,21 +162,11 @@ export default async function TweetDetailPage({
           )}
         </div>
       </div>
-      <div className="mt-6 rounded-lg border p-4">
-        <h3 className="mb-4 text-lg font-medium">답글 작성</h3>
-        <div className="mb-4">
-          <textarea
-            className="w-full rounded-lg border p-2"
-            rows={3}
-            placeholder="답글을 작성해주세요..."
-          />
-        </div>
-        <div className="flex justify-end">
-          <button className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white">
-            답글 작성
-          </button>
-        </div>
-      </div>
+      <ResponseContainer
+        initialResponses={responses}
+        tweetId={id}
+        currentUsername={currentUsername}
+      />
     </main>
   );
 }
