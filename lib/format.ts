@@ -1,4 +1,5 @@
-export function formatToKorDate(date: Date): string {
+export function formatToKorDate(dateInput: Date | string): string {
+  const date = dateInput instanceof Date ? dateInput : new Date(dateInput);
   return date.toLocaleString('ko-KR', {
     timeZone: 'Asia/Seoul',
     year: 'numeric',
