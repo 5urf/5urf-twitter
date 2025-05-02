@@ -8,27 +8,29 @@ datasource db {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
-  username   String   @unique
-  email      String   @unique
+  id         Int        @id @default(autoincrement())
+  username   String     @unique
+  email      String     @unique
   password   String
   bio        String?
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
   tweets     Tweet[]
   likes      Like[]
+  Response   Response[]
 
   @@index([username])
 }
 
 model Tweet {
-  id         Int      @id @default(autoincrement())
+  id         Int        @id @default(autoincrement())
   tweet      String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  user       User     @relation(fields: [userId], references: [id])
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     Int
   likes      Like[]
+  responses  Response[]
 
   @@index([userId])
   @@index([created_at])
@@ -37,12 +39,29 @@ model Tweet {
 model Like {
   id         Int      @id @default(autoincrement())
   created_at DateTime @default(now())
-  user       User     @relation(fields: [userId], references: [id])
-  tweet      Tweet    @relation(fields: [tweetId], references: [id])
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tweet      Tweet    @relation(fields: [tweetId], references: [id], onDelete: Cascade)
   userId     Int
   tweetId    Int
 
   @@unique([userId, tweetId])
   @@index([userId])
   @@index([tweetId])
+}
+
+model Response {
+  id         Int      @id @default(autoincrement())
+  content    String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
+
+  tweet   Tweet @relation(fields: [tweetId], references: [id], onDelete: Cascade)
+  tweetId Int
+
+  @@index([userId])
+  @@index([tweetId])
+  @@index([created_at])
 }
