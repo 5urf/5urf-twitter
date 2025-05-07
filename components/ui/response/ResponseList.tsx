@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import ResponseItem from './ResponseItem';
 
 interface IResponseType {
@@ -15,27 +16,27 @@ interface ResponseListProps {
 
 export default function ResponseList({ responses }: ResponseListProps) {
   if (responses.length === 0) {
-    return (
-      <div className="rounded-lg border p-4 text-center">
-        <p className="text-gray-500">아직 답글이 없습니다.</p>
-      </div>
-    );
+    return null;
   }
 
   return (
-    <div>
-      <h3 className="mb-4 text-lg font-medium">답글 {responses.length}개</h3>
-      <div className="space-y-4">
-        {responses.map((response) => (
+    <div className="retro-container overflow-hidden rounded-b-none p-0">
+      {responses.map((response) => (
+        <div
+          key={response.id}
+          className={cn(
+            'border-b-2 border-gray-300 last:border-b-0',
+            response.id < 0 && 'bg-blue-50'
+          )}
+        >
           <ResponseItem
-            key={response.id}
             content={response.content}
             created_at={response.created_at}
             username={response.user.username}
             isPending={response.id < 0}
           />
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }

@@ -90,7 +90,7 @@ export async function addResponse(
   } catch (error) {
     console.error(error);
     return {
-      formErrors: ['답글 추가에 실패했습니다. 다시 시도해 주세요.'],
+      formErrors: ['댓글 추가에 실패했습니다. 다시 시도해 주세요.'],
     };
   }
 }

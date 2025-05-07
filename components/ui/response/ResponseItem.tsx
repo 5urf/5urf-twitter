@@ -1,5 +1,4 @@
 import { formatToKorDate } from '@/lib/format';
-import { cn } from '@/lib/utils';
 
 interface IResponseItemProps {
   content: string;
@@ -15,14 +14,9 @@ export default function ResponseItem({
   isPending = false,
 }: IResponseItemProps) {
   return (
-    <div
-      className={cn(
-        'rounded-lg border p-4',
-        isPending && 'border-blue-200 bg-blue-50 opacity-70'
-      )}
-    >
+    <div className="p-4">
       <div className="mb-2 flex items-center gap-2">
-        <div className="font-medium">{username}</div>
+        <div className="font-medium text-blue-600">{username}</div>
         {isPending && (
           <span className="text-xs text-blue-500">(게시 중...)</span>
         )}
