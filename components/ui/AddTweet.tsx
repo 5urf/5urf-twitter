@@ -34,13 +34,13 @@ export default function AddTweet() {
   };
 
   return (
-    <div className="mb-6 rounded border border-gray-200 bg-white p-4">
+    <div className="retro-container mb-6">
       <form onSubmit={handleSubmit}>
         <textarea
           name="tweet"
           value={tweetText}
           onChange={handleTextChange}
-          className="min-h-20 w-full rounded border border-gray-200 p-3 text-base outline-none placeholder:text-neutral-300 focus:border-blue-400"
+          className="retro-input min-h-20 w-full border-gray-300 bg-white p-3 text-base placeholder:text-gray-400 focus:border-blue-400"
           placeholder="무슨 일이 일어나고 있나요?"
           rows={3}
           maxLength={TWEET_VALIDATION.MAX_LENGTH}
@@ -60,7 +60,7 @@ export default function AddTweet() {
             loadingText="게시 중..."
             type="submit"
             disabled={invaild}
-            className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 disabled:bg-gray-300"
+            className="w-auto border-blue-500 bg-blue-500 px-4 py-2 hover:border-blue-600 hover:bg-blue-600 disabled:border-gray-300 disabled:bg-gray-300"
           />
         </div>
       </form>

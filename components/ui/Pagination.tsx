@@ -42,7 +42,7 @@ const Pagination = ({
       <Link
         href={createPageUrl(currentPage > 1 ? currentPage - 1 : 1)}
         className={cn(
-          'rounded-full border p-2 transition',
+          'retro-button p-2 transition',
           isPrevDisabled ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-100'
         )}
         aria-disabled={isPrevDisabled}
@@ -51,7 +51,7 @@ const Pagination = ({
         <ChevronLeft className="size-5" />
       </Link>
 
-      <span className="text-sm font-medium">
+      <span className="retro-button bg-white px-4 py-2 text-sm">
         {currentPage} / {totalPages}
       </span>
 
@@ -60,7 +60,7 @@ const Pagination = ({
           currentPage < totalPages ? currentPage + 1 : totalPages
         )}
         className={cn(
-          'rounded-full border p-2 transition',
+          'retro-button p-2 transition',
           isNextDisabled ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-100'
         )}
         aria-disabled={isNextDisabled}
