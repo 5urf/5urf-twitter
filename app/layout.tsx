@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${pixelFont.variable} ${monoFont.variable}`}>
+    <html lang="ko" className={`${pixelFont.variable} ${monoFont.variable}`}>
       <body
         suppressHydrationWarning
         className="mx-auto max-w-screen-sm bg-gray-100 font-mono"
