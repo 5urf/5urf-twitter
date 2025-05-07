@@ -1,5 +1,20 @@
 import type { Metadata } from 'next';
+import { Press_Start_2P, Space_Mono } from 'next/font/google';
 import './globals.css';
+
+const pixelFont = Press_Start_2P({
+  weight: ['400'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-pixel',
+});
+
+const monoFont = Space_Mono({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -12,8 +27,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body suppressHydrationWarning className="mx-auto max-w-screen-sm">
+    <html lang="en" className={`${pixelFont.variable} ${monoFont.variable}`}>
+      <body
+        suppressHydrationWarning
+        className="mx-auto max-w-screen-sm bg-gray-100 font-mono"
+      >
         {children}
       </body>
     </html>

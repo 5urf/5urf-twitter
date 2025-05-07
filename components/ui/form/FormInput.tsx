@@ -22,11 +22,11 @@ const FormInput: React.FC<IFormInputProps> = ({
   const renderIcon = () => {
     switch (icon) {
       case 'email':
-        return <Mail className="size-5" />;
+        return <Mail className="size-5 text-blue-600" />;
       case 'username':
-        return <User className="size-5" />;
+        return <User className="size-5 text-blue-600" />;
       case 'password':
-        return <Lock className="size-5" />;
+        return <Lock className="size-5 text-blue-600" />;
       default:
         return null;
     }
@@ -40,11 +40,10 @@ const FormInput: React.FC<IFormInputProps> = ({
         </div>
         <input
           className={cn(
-            'w-full rounded-full border border-neutral-200 py-3 pl-12 pr-4',
-            'focus:border-transparent focus:outline-none focus:ring-4 focus:ring-neutral-300',
-            'transition',
-            'placeholder:text-neutral-300',
-            hasError && 'border-red-200 ring-2 ring-red-300 focus:ring-red-400',
+            'retro-input w-full py-3 pl-12 pr-4',
+            'focus:border-blue-500 focus:outline-none focus:ring-0',
+            'transition placeholder:text-gray-400',
+            hasError && 'border-red-500 ring-1 ring-red-500',
             className
           )}
           {...props}
