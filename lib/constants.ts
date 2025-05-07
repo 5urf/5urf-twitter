@@ -11,25 +11,25 @@ export const ACCOUNT_VALIDATION = {
 
   ERROR_MESSAGES: {
     EMAIL: {
-      REQUIRED: 'Email is required',
-      INVALID_TYPE: 'Email must be a string',
-      INVALID_FORMAT: 'Invalid email format',
-      DOMAIN: 'Only @zod.com emails are allowed',
-      DUPLICATE: 'This username is already taken',
-      NOT_FOUND: 'An account with this email does not exist',
+      REQUIRED: '이메일은 필수 입력 항목입니다',
+      INVALID_TYPE: '이메일은 문자열이어야 합니다',
+      INVALID_FORMAT: '올바르지 않은 이메일 형식입니다',
+      DOMAIN: '@zod.com 이메일만 허용됩니다',
+      DUPLICATE: '이 이메일은 이미 사용 중입니다',
+      NOT_FOUND: '해당 이메일로 등록된 계정이 존재하지 않습니다',
     },
     USERNAME: {
-      REQUIRED: 'Username is required',
-      INVALID_TYPE: 'Username must be a string',
-      TOO_SHORT: 'Username should be at least 5 characters long.',
-      DUPLICATE: 'This email is already taken',
+      REQUIRED: '사용자 이름은 필수 입력 항목입니다',
+      INVALID_TYPE: '사용자 이름은 문자열이어야 합니다',
+      TOO_SHORT: '사용자 이름은 최소 5자 이상이어야 합니다',
+      DUPLICATE: '이 사용자 이름은 이미 사용 중입니다',
     },
     PASSWORD: {
-      REQUIRED: 'Password is required',
-      INVALID_TYPE: 'Password must be a string',
-      TOO_SHORT: 'Password should be at least 10 characters long',
-      NO_NUMBER: 'Password should contain at least one number (0123456789)',
-      CONFIRM: 'Both passwords should be the same!',
+      REQUIRED: '비밀번호는 필수 입력 항목입니다',
+      INVALID_TYPE: '비밀번호는 문자열이어야 합니다',
+      TOO_SHORT: '비밀번호는 최소 10자 이상이어야 합니다',
+      NO_NUMBER: '비밀번호는 최소 하나의 숫자(0-9)를 포함해야 합니다',
+      CONFIRM: '비밀번호가 일치하지 않습니다',
     },
   },
 };
@@ -39,8 +39,8 @@ export const TWEET_VALIDATION = {
   MAX_LENGTH: 200,
 
   ERROR_MESSAGES: {
-    REQUIRED: 'Tweet content is required',
-    TOO_SHORT: 'Tweet content is required',
-    TOO_LONG: 'Tweet cannot exceed 200 characters',
+    REQUIRED: '트윗 내용은 필수 입력 항목입니다',
+    TOO_SHORT: '트윗 내용은 필수 입력 항목입니다',
+    TOO_LONG: '트윗은 최대 200자까지 입력 가능합니다',
   },
 };

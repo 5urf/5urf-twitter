@@ -2,7 +2,7 @@
 import FormButton from '@/components/ui/form/FormButton';
 import FormInput from '@/components/ui/form/FormInput';
 import { ACCOUNT_VALIDATION } from '@/lib/constants';
-import { Smile } from 'lucide-react';
+import { Terminal } from 'lucide-react';
 import Link from 'next/link';
 import { startTransition, useActionState } from 'react';
 import { login } from './actions';
@@ -17,11 +17,11 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <section className="w-full max-w-md rounded-lg p-8">
-        <figure className="mb-8 flex flex-col items-center justify-center gap-2 *:font-medium">
-          <Smile className="size-14 text-cyan-400" />
-          <h2 className="text-xl">Log in with email and password.</h2>
+    <main className="flex min-h-screen items-center justify-center px-4">
+      <section className="retro-container w-full max-w-md">
+        <figure className="mb-8 flex flex-col items-center justify-center gap-2">
+          <Terminal className="size-14 text-blue-600" />
+          <h2 className="text-xl text-blue-600">Log In</h2>
         </figure>
         <form onSubmit={onSubmit} className="space-y-4">
           <FormInput
@@ -41,11 +41,11 @@ export default function LoginPage() {
             errorMessages={state.fieldErrors?.password}
             required
           />
-          <FormButton text="Log in" type="submit" />
+          <FormButton text="로그인" type="submit" />
         </form>
         <Link
           href="/create-account"
-          className="primary-btn mt-4 flex justify-center rounded-full text-lg"
+          className="retro-button mt-4 flex justify-center border-gray-300 bg-gray-100 py-3 text-sm text-gray-800 hover:bg-gray-200"
         >
           회원가입
         </Link>

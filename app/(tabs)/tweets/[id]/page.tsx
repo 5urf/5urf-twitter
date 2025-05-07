@@ -128,38 +128,44 @@ export default async function TweetDetailPage({
       <div className="mb-4">
         <Link
           href="/"
-          className="inline-flex items-center text-gray-700 transition-colors hover:text-gray-300"
+          className="inline-flex items-center text-blue-600 transition-colors hover:text-blue-800"
         >
           <ArrowLeft className="mr-1 size-5" />
-          <span>뒤로가기</span>
+          <span className="font-pixel">BACK</span>
         </Link>
       </div>
-      <div className="overflow-hidden rounded-lg border">
-        <div className="flex items-center gap-3 border-b border-gray-200 p-5">
-          <div className="font-medium">
+      <div className="retro-container overflow-hidden p-0">
+        <div className="border-b-2 border-gray-300 p-5">
+          <div className="font-medium text-blue-600">
             <span>{tweet.user.username}</span>
           </div>
         </div>
-        <div className="p-5">
+        <div className="border-b-2 border-gray-300 p-5">
           <p className="whitespace-pre-wrap text-lg">{tweet.tweet}</p>
           <div className="mt-4 text-xs text-gray-500">
             {formatToKorDate(tweet.created_at)}
           </div>
         </div>
-        <div className="flex items-center justify-between border-t border-gray-200 p-4">
-          <div className="flex items-center space-x-2">
-            <LikeButton isLiked={isLiked} likeCount={likeCount} tweetId={id} />
-          </div>
-          {isOwner && (
-            <div className="space-x-2">
-              <button className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white">
-                수정
-              </button>
-              <button className="rounded-md bg-red-500 px-4 py-2 text-sm font-medium text-white">
-                삭제
-              </button>
+        <div className="p-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <LikeButton
+                isLiked={isLiked}
+                likeCount={likeCount}
+                tweetId={id}
+              />
             </div>
-          )}
+            {isOwner && (
+              <div className="space-x-2">
+                <button className="retro-button border-blue-500 bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600">
+                  수정
+                </button>
+                <button className="retro-button border-red-500 bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600">
+                  삭제
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <ResponseContainer

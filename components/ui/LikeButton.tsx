@@ -47,7 +47,7 @@ export default function LikeButton({
       onClick={handleLike}
       disabled={isPending}
       className={cn(
-        'flex items-center text-gray-500 transition-colors',
+        'retro-button flex items-center border-transparent bg-transparent px-2 py-1 text-gray-500 transition-colors',
         state.isLiked ? 'text-red-500' : 'hover:text-red-500',
         isPending && 'cursor-not-allowed opacity-70'
       )}

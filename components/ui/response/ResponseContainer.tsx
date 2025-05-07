@@ -45,10 +45,19 @@ export default function ResponseContainer({
     addOptimisticResponse({ content });
   };
 
+  const hasResponses = optimisticResponses.length > 0;
+
   return (
     <div className="mt-6">
-      <ResponseList responses={optimisticResponses} />
-      <ResponseForm tweetId={tweetId} addResponseAction={addResponseAction} />
+      <h3 className="mb-4 text-base font-medium text-blue-600">
+        댓글 {optimisticResponses.length}개
+      </h3>
+      {hasResponses && <ResponseList responses={optimisticResponses} />}
+      <ResponseForm
+        tweetId={tweetId}
+        addResponseAction={addResponseAction}
+        hasResponses={hasResponses}
+      />
     </div>
   );
 }

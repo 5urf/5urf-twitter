@@ -24,7 +24,8 @@ const FormButton: React.FC<IFormButtonProps> = ({
     <button
       disabled={disabled || pending}
       className={cn(
-        'primary-btn rounded-full',
+        'retro-button w-full border-blue-600 bg-blue-600 py-3 text-white',
+        'hover:border-blue-700 hover:bg-blue-700',
         'disabled:cursor-not-allowed disabled:opacity-70',
         className
       )}
