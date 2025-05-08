@@ -1,5 +1,6 @@
 import LikeButton from '@/components/ui/LikeButton';
 import ResponseContainer from '@/components/ui/response/ResponseContainer';
+import { isCurrentUser } from '@/lib/auth';
 import db from '@/lib/db';
 import { formatToKorDate } from '@/lib/format';
 import { getSession } from '@/lib/session';
@@ -34,12 +35,6 @@ const getCachedTweet = nextCache(getTweet, ['tweet-detail'], {
   tags: ['tweet-detail'],
   revalidate: 60,
 });
-
-async function getIsOwner(userId: number) {
-  const session = await getSession();
-  if (session.id) return session.id === userId;
-  return false;
-}
 
 async function getLikeStatus(tweetId: number, userId: number) {
   const isLike = await db.like.findUnique({
@@ -115,7 +110,7 @@ export default async function TweetDetailPage({
 
   if (!tweet) return notFound();
 
-  const isOwner = await getIsOwner(tweet.userId);
+  const isOwner = await isCurrentUser(tweet.userId);
 
   const { likeCount, isLiked } = await getCachedLikeStatus(id);
 
@@ -136,9 +131,12 @@ export default async function TweetDetailPage({
       </div>
       <div className="retro-container overflow-hidden p-0">
         <div className="border-b-2 border-gray-300 p-5">
-          <div className="font-medium text-blue-600">
-            <span>{tweet.user.username}</span>
-          </div>
+          <Link
+            href={`/users/${encodeURIComponent(tweet.user.username)}`}
+            className="username-link"
+          >
+            {tweet.user.username}
+          </Link>
         </div>
         <div className="border-b-2 border-gray-300 p-5">
           <p className="whitespace-pre-wrap text-lg">{tweet.tweet}</p>

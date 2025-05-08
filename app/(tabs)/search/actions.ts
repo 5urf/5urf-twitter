@@ -1,12 +1,13 @@
 'use server';
 
 import db from '@/lib/db';
+import { DEFAULT_PAGE_SIZE, getPaginationParams } from '@/lib/pagination';
 
 export async function searchTweets(query: string, page: number = 1) {
   if (!query.trim()) return { tweets: [], totalPages: 1 };
 
-  const pageSize = 10;
-  const skip = (page - 1) * pageSize;
+  const pageSize = DEFAULT_PAGE_SIZE;
+  const { skip, take } = getPaginationParams(page, pageSize);
 
   const where = {
     OR: [
@@ -36,7 +37,7 @@ export async function searchTweets(query: string, page: number = 1) {
       created_at: 'desc',
     },
     skip,
-    take: pageSize,
+    take,
   });
 
   return {

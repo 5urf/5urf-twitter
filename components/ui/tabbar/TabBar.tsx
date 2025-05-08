@@ -4,7 +4,7 @@ import { Home, Search, Settings, User } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import TabItem from './TabItem';
 
-export default function TabBar() {
+export default function TabBar({ username }: { username?: string }) {
   const pathname = usePathname();
 
   const isActive = (path: string) => {
@@ -29,9 +29,9 @@ export default function TabBar() {
           icon={<Search className="size-6" />}
         />
         <TabItem
-          href="/profile"
+          href={`/users/${username}`}
           label="프로필"
-          isActive={isActive('/profile')}
+          isActive={isActive('/users')}
           icon={<User className="size-6" />}
         />
         <TabItem
