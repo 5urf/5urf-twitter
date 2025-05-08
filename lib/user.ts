@@ -17,3 +17,18 @@ export async function getCurrentUsername(): Promise<string> {
   const user = await getCurrentUser({ username: true });
   return user!.username;
 }
+
+export async function getUserByUsername(username: string) {
+  const user = await db.user.findUnique({
+    where: { username },
+    select: {
+      id: true,
+      username: true,
+      email: true,
+      bio: true,
+      created_at: true,
+    },
+  });
+
+  return user;
+}

@@ -1,5 +1,6 @@
 import LikeButton from '@/components/ui/LikeButton';
 import ResponseContainer from '@/components/ui/response/ResponseContainer';
+import { isCurrentUser } from '@/lib/auth';
 import db from '@/lib/db';
 import { formatToKorDate } from '@/lib/format';
 import { getSession } from '@/lib/session';
@@ -34,12 +35,6 @@ const getCachedTweet = nextCache(getTweet, ['tweet-detail'], {
   tags: ['tweet-detail'],
   revalidate: 60,
 });
-
-async function getIsOwner(userId: number) {
-  const session = await getSession();
-  if (session.id) return session.id === userId;
-  return false;
-}
 
 async function getLikeStatus(tweetId: number, userId: number) {
   const isLike = await db.like.findUnique({
@@ -115,7 +110,7 @@ export default async function TweetDetailPage({
 
   if (!tweet) return notFound();
 
-  const isOwner = await getIsOwner(tweet.userId);
+  const isOwner = await isCurrentUser(tweet.userId);
 
   const { likeCount, isLiked } = await getCachedLikeStatus(id);
 
