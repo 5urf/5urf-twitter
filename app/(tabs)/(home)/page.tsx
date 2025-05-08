@@ -2,6 +2,11 @@ import AddTweet from '@/components/ui/AddTweet';
 import Pagination from '@/components/ui/Pagination';
 import TweetList from '@/components/ui/TweetList';
 import db from '@/lib/db';
+import {
+  DEFAULT_PAGE_SIZE,
+  getPageFromSearchParams,
+  getPaginationParams,
+} from '@/lib/pagination';
 import { Prisma } from '@prisma/client';
 
 async function getTotalPages(pageSize: number) {
@@ -12,6 +17,8 @@ async function getTotalPages(pageSize: number) {
 }
 
 async function getTweets(page: number, pageSize: number) {
+  const { skip, take } = getPaginationParams(page, pageSize);
+
   const tweets = await db.tweet.findMany({
     include: {
       user: {
@@ -29,8 +36,8 @@ async function getTweets(page: number, pageSize: number) {
     orderBy: {
       created_at: 'desc',
     },
-    skip: (page - 1) * pageSize,
-    take: pageSize,
+    skip,
+    take,
   });
 
   return tweets;
@@ -43,9 +50,8 @@ interface IHomePagePageProps {
 }
 
 export default async function HomePage({ searchParams }: IHomePagePageProps) {
-  const { page: pageParam } = await searchParams;
-  const page = Number(pageParam) || 1;
-  const pageSize = 10;
+  const page = await getPageFromSearchParams(searchParams);
+  const pageSize = DEFAULT_PAGE_SIZE;
 
   const [totalPages, tweets] = await Promise.all([
     getTotalPages(pageSize),
