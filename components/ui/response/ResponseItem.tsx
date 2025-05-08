@@ -1,4 +1,5 @@
 import { formatToKorDate } from '@/lib/format';
+import Link from 'next/link';
 
 interface IResponseItemProps {
   content: string;
@@ -16,7 +17,12 @@ export default function ResponseItem({
   return (
     <div className="p-4">
       <div className="mb-2 flex items-center gap-2">
-        <div className="font-medium text-blue-600">{username}</div>
+        <Link
+          href={`/users/${encodeURIComponent(username)}`}
+          className="username-link"
+        >
+          {username}
+        </Link>
         {isPending && (
           <span className="text-xs text-blue-500">(게시 중...)</span>
         )}

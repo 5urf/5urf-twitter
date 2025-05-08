@@ -131,9 +131,12 @@ export default async function TweetDetailPage({
       </div>
       <div className="retro-container overflow-hidden p-0">
         <div className="border-b-2 border-gray-300 p-5">
-          <div className="font-medium text-blue-600">
-            <span>{tweet.user.username}</span>
-          </div>
+          <Link
+            href={`/users/${encodeURIComponent(tweet.user.username)}`}
+            className="username-link"
+          >
+            {tweet.user.username}
+          </Link>
         </div>
         <div className="border-b-2 border-gray-300 p-5">
           <p className="whitespace-pre-wrap text-lg">{tweet.tweet}</p>
