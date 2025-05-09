@@ -8,16 +8,23 @@ interface IBackButtonProps {
   text?: string;
   className?: string;
   containerClassName?: string;
+  fallbackPath?: string;
 }
 
 export default function BackButton({
   text = 'BACK',
   className,
   containerClassName,
+  fallbackPath,
 }: IBackButtonProps) {
   const router = useRouter();
 
   const handleClick = () => {
+    if (fallbackPath) {
+      router.push(fallbackPath);
+      return;
+    }
+
     router.back();
   };
 

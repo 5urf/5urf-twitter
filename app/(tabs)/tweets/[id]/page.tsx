@@ -120,7 +120,7 @@ export default async function TweetDetailPage({
 
   return (
     <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
-      <BackButton />
+      <BackButton fallbackPath="/" />
       <div className="retro-container overflow-hidden p-0">
         <div className="border-b-2 border-gray-300 p-5">
           <Link
