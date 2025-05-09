@@ -147,9 +147,12 @@ export default async function TweetDetailPage({
             </div>
             {isOwner && (
               <div className="space-x-2">
-                <button className="retro-button border-blue-500 bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600">
+                <Link
+                  href={`/tweets/${id}/edit`}
+                  className="retro-button border-blue-500 bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600"
+                >
                   수정
-                </button>
+                </Link>
                 <button className="retro-button border-red-500 bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600">
                   삭제
                 </button>
