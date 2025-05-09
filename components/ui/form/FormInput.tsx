@@ -10,13 +10,13 @@ interface IFormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   errorMessages?: string[];
 }
 
-const FormInput: React.FC<IFormInputProps> = ({
+export default function FormInput({
   icon,
   className,
   containerClassName,
   errorMessages = [],
   ...props
-}) => {
+}: IFormInputProps) {
   const hasError = errorMessages.length > 0;
 
   const renderIcon = () => {
@@ -60,6 +60,4 @@ const FormInput: React.FC<IFormInputProps> = ({
       )}
     </div>
   );
-};
-
-export default FormInput;
+}

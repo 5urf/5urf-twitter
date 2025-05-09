@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Press_Start_2P, Space_Mono } from 'next/font/google';
+import { Toaster } from 'sonner';
 import './globals.css';
 
 const pixelFont = Press_Start_2P({
@@ -32,6 +33,7 @@ export default function RootLayout({
         suppressHydrationWarning
         className="mx-auto max-w-screen-sm bg-gray-100 font-mono"
       >
+        <Toaster position="bottom-center" offset="80px" richColors />
         {children}
       </body>
     </html>

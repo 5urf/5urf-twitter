@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { Heart } from 'lucide-react';
 import { useOptimistic, useTransition } from 'react';
 
-interface LikeButtonProps {
+interface ILikeButtonProps {
   isLiked: boolean;
   likeCount: number;
   tweetId: number;
@@ -15,7 +15,7 @@ export default function LikeButton({
   isLiked,
   likeCount,
   tweetId,
-}: LikeButtonProps) {
+}: ILikeButtonProps) {
   const [isPending, startTransition] = useTransition();
 
   const [state, updateState] = useOptimistic(

@@ -1,18 +1,9 @@
-import { ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
+import BackButton from '@/components/ui/BackButton';
 
 export default function LoadingTweetDetail() {
   return (
     <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
-      <div className="mb-4">
-        <Link
-          href="/"
-          className="inline-flex items-center text-blue-600 transition-colors hover:text-blue-800"
-        >
-          <ArrowLeft className="mr-1 size-5" />
-          <span className="font-pixel">BACK</span>
-        </Link>
-      </div>
+      <BackButton />
       <div className="retro-container overflow-hidden p-0">
         <div className="border-b-2 border-gray-300 p-5">
           <div className="h-5 w-32 animate-pulse bg-gray-200" />

@@ -1,3 +1,4 @@
+import BackButton from '@/components/ui/BackButton';
 import LikeButton from '@/components/ui/LikeButton';
 import ResponseContainer from '@/components/ui/response/ResponseContainer';
 import { isCurrentUser } from '@/lib/auth';
@@ -5,7 +6,6 @@ import db from '@/lib/db';
 import { formatToKorDate } from '@/lib/format';
 import { getSession } from '@/lib/session';
 import { getCurrentUsername } from '@/lib/user';
-import { ArrowLeft } from 'lucide-react';
 import { unstable_cache as nextCache } from 'next/cache';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -120,15 +120,7 @@ export default async function TweetDetailPage({
 
   return (
     <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
-      <div className="mb-4">
-        <Link
-          href="/"
-          className="inline-flex items-center text-blue-600 transition-colors hover:text-blue-800"
-        >
-          <ArrowLeft className="mr-1 size-5" />
-          <span className="font-pixel">BACK</span>
-        </Link>
-      </div>
+      <BackButton />
       <div className="retro-container overflow-hidden p-0">
         <div className="border-b-2 border-gray-300 p-5">
           <Link
