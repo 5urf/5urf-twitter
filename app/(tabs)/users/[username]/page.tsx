@@ -73,6 +73,7 @@ export default async function UserProfilePage({
 
   return (
     <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
+      <h1 className="mb-6 text-2xl text-blue-600">PROFILE</h1>
       <div className="retro-container mb-6 p-6">
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-medium text-blue-600">{user.username}</h1>

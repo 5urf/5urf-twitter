@@ -30,6 +30,7 @@ export const ACCOUNT_VALIDATION = {
       TOO_SHORT: '비밀번호는 최소 10자 이상이어야 합니다',
       NO_NUMBER: '비밀번호는 최소 하나의 숫자(0-9)를 포함해야 합니다',
       CONFIRM: '비밀번호가 일치하지 않습니다',
+      WRONG: '잘못된 비밀번호입니다',
     },
   },
 };

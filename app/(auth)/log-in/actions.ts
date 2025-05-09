@@ -63,7 +63,7 @@ export async function login(
   if (!passwordOk) {
     return {
       fieldErrors: {
-        password: ['Wrong password.'],
+        password: [ACCOUNT_VALIDATION.ERROR_MESSAGES.PASSWORD.WRONG],
         email: [],
       },
     };

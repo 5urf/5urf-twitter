@@ -7,6 +7,10 @@ export async function getCurrentUser<T extends Prisma.UserSelect>(
 ): Promise<Prisma.UserGetPayload<{ select: T }> | null> {
   const session = await getSession();
 
+  if (!session.id) {
+    return null;
+  }
+
   return await db.user.findUnique({
     where: { id: session.id },
     select,
@@ -14,8 +18,13 @@ export async function getCurrentUser<T extends Prisma.UserSelect>(
 }
 
 export async function getCurrentUsername(): Promise<string> {
-  const user = await getCurrentUser({ username: true });
-  return user!.username;
+  try {
+    const user = await getCurrentUser({ username: true });
+    return user?.username || '';
+  } catch (error) {
+    console.error('Error fetching username:', error);
+    return '';
+  }
 }
 
 export async function getUserByUsername(username: string) {
