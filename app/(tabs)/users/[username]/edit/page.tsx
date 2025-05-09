@@ -1,8 +1,8 @@
 'use client';
 
+import BackButton from '@/components/ui/BackButton';
 import PasswordChangeForm from '@/components/ui/profile/PasswordChangeForm';
 import ProfileInfoForm from '@/components/ui/profile/ProfileInfoForm';
-import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { use, useEffect, useOptimistic, useState } from 'react';
 import { toast } from 'sonner';
@@ -62,15 +62,7 @@ export default function ProfileEditPage({ params }: IProfileEditPageProps) {
   if (isLoading) {
     return (
       <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
-        <div className="mb-4">
-          <Link
-            href={`/users/${username}`}
-            className="inline-flex items-center text-blue-600 transition-colors hover:text-blue-800"
-          >
-            <ArrowLeft className="mr-1 size-5" />
-            <span className="font-pixel">BACK</span>
-          </Link>
-        </div>
+        <BackButton />
         <div className="mb-6 h-6 w-40 animate-pulse bg-blue-200" />
         <div className="retro-container mb-6">
           <div className="mb-4 h-6 w-32 animate-pulse bg-gray-200" />
@@ -116,15 +108,7 @@ export default function ProfileEditPage({ params }: IProfileEditPageProps) {
 
   return (
     <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
-      <div className="mb-4">
-        <Link
-          href={`/users/${username}`}
-          className="inline-flex items-center text-blue-600 transition-colors hover:text-blue-800"
-        >
-          <ArrowLeft className="mr-1 size-5" />
-          <span className="font-pixel">BACK</span>
-        </Link>
-      </div>
+      <BackButton />
       <h1 className="mb-6 text-xl font-medium text-blue-600">프로필 편집</h1>
       {optimisticProfile && (
         <ProfileInfoForm

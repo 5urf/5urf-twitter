@@ -11,12 +11,12 @@ interface IPaginationProps {
   className?: string;
 }
 
-const Pagination = ({
+export default function Pagination({
   currentPage,
   totalPages,
   basePath = '/',
   className,
-}: IPaginationProps) => {
+}: IPaginationProps) {
   if (totalPages <= 1) {
     return null;
   }
@@ -70,6 +70,4 @@ const Pagination = ({
       </Link>
     </div>
   );
-};
-
-export default Pagination;
+}

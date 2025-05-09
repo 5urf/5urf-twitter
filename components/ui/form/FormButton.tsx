@@ -11,13 +11,13 @@ interface IFormButtonProps
   loadingText?: string;
 }
 
-const FormButton: React.FC<IFormButtonProps> = ({
+export default function FormButton({
   text,
   loadingText = 'Loading...',
   className,
   disabled,
   ...props
-}) => {
+}: IFormButtonProps) {
   const { pending } = useFormStatus();
 
   return (
@@ -41,6 +41,4 @@ const FormButton: React.FC<IFormButtonProps> = ({
       )}
     </button>
   );
-};
-
-export default FormButton;
+}
