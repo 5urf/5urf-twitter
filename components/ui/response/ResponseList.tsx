@@ -1,20 +1,18 @@
 import { cn } from '@/lib/utils';
+import { ResponseType } from '@/types/response';
 import ResponseItem from './ResponseItem';
 
-interface IResponseType {
-  id: number;
-  content: string;
-  created_at: Date;
-  user: {
-    username: string;
-  };
+interface IResponseListProps {
+  responses: ResponseType[];
+  currentUserId: number;
+  onUpdateSuccessAction?: (id: number, content: string) => void;
 }
 
-interface ResponseListProps {
-  responses: IResponseType[];
-}
-
-export default function ResponseList({ responses }: ResponseListProps) {
+export default function ResponseList({
+  responses,
+  currentUserId,
+  onUpdateSuccessAction,
+}: IResponseListProps) {
   if (responses.length === 0) {
     return null;
   }
@@ -30,10 +28,14 @@ export default function ResponseList({ responses }: ResponseListProps) {
           )}
         >
           <ResponseItem
+            id={response.id}
             content={response.content}
             created_at={response.created_at}
             username={response.user.username}
+            userId={response.user.id}
             isPending={response.id < 0}
+            isOwner={response.user.id === currentUserId}
+            onUpdateSuccessAction={onUpdateSuccessAction}
           />
         </div>
       ))}

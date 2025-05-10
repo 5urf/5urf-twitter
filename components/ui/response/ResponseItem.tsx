@@ -1,36 +1,67 @@
-import { formatToKorDate } from '@/lib/format';
-import Link from 'next/link';
+'use client';
+
+import { useState } from 'react';
+import ResponseEditMode from './ResponseEditMode';
+import ResponseViewMode from './ResponseViewMode';
 
 interface IResponseItemProps {
+  id: number;
   content: string;
   created_at: Date;
   username: string;
+  userId: number;
   isPending?: boolean;
+  isOwner?: boolean;
+  onUpdateSuccessAction?: (id: number, newContent: string) => void;
 }
 
 export default function ResponseItem({
+  id,
   content,
   created_at,
   username,
+  userId,
   isPending = false,
+  isOwner = false,
+  onUpdateSuccessAction,
 }: IResponseItemProps) {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEditStartAction = () => {
+    setIsEditing(true);
+  };
+
+  const handleEditCancelAction = () => {
+    setIsEditing(false);
+  };
+
+  const handleEditSuccessAction = (newContent: string) => {
+    if (!onUpdateSuccessAction) return;
+
+    onUpdateSuccessAction(id, newContent);
+    setIsEditing(false);
+  };
+
+  if (isEditing) {
+    return (
+      <ResponseEditMode
+        id={id}
+        initialContent={content}
+        onCancelAction={handleEditCancelAction}
+        onSuccessAction={handleEditSuccessAction}
+      />
+    );
+  }
+
   return (
-    <div className="p-4">
-      <div className="mb-2 flex items-center gap-2">
-        <Link
-          href={`/users/${encodeURIComponent(username)}`}
-          className="username-link"
-        >
-          {username}
-        </Link>
-        {isPending && (
-          <span className="text-xs text-blue-500">(게시 중...)</span>
-        )}
-      </div>
-      <p className="whitespace-pre-wrap">{content}</p>
-      <div className="mt-2 text-xs text-gray-500">
-        {formatToKorDate(created_at)}
-      </div>
-    </div>
+    <ResponseViewMode
+      id={id}
+      content={content}
+      created_at={created_at}
+      username={username}
+      isPending={isPending}
+      isOwner={isOwner}
+      onEditClickAction={handleEditStartAction}
+    />
   );
 }

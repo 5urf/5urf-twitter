@@ -1,48 +1,82 @@
 'use client';
 
+import { ResponseType } from '@/types/response';
 import { useOptimistic } from 'react';
 import ResponseForm from './ResponseForm';
 import ResponseList from './ResponseList';
 
-type ResponseType = {
+interface IUpdateAction {
+  type: 'update';
   id: number;
   content: string;
-  created_at: Date;
-  user: {
-    username: string;
-  };
-};
+}
+
+interface IAddAction {
+  type: 'add';
+  content: string;
+}
+
+type ResponseAction = IUpdateAction | IAddAction;
 
 interface IResponseContainerProps {
   initialResponses: ResponseType[];
   tweetId: number;
   currentUsername: string;
+  currentUserId: number;
 }
 
 export default function ResponseContainer({
   initialResponses,
   tweetId,
   currentUsername,
+  currentUserId,
 }: IResponseContainerProps) {
-  const [optimisticResponses, addOptimisticResponse] = useOptimistic<
+  const [optimisticResponses, updateOptimisticResponses] = useOptimistic<
     ResponseType[],
-    { content: string }
-  >(initialResponses, (state, newResponse) => {
-    return [
-      {
+    ResponseAction
+  >(initialResponses, (state, update) => {
+    if (update.type === 'add') {
+      const newItem: ResponseType = {
         id: -Math.random(),
-        content: newResponse.content,
+        content: update.content,
         created_at: new Date(),
+        updated_at: new Date(),
+        userId: currentUserId,
+        tweetId,
         user: {
+          id: currentUserId,
           username: currentUsername,
         },
-      },
-      ...state,
-    ];
+        isPending: true,
+      };
+
+      return [...state, newItem];
+    }
+
+    if (update.type === 'update') {
+      return state.map((response) =>
+        response.id === update.id
+          ? { ...response, content: update.content }
+          : response
+      );
+    }
+
+    return state;
   });
 
   const addResponseAction = (content: string) => {
-    addOptimisticResponse({ content });
+    updateOptimisticResponses({
+      type: 'add',
+      content,
+    });
+  };
+
+  const updateResponseAction = (id: number, content: string) => {
+    updateOptimisticResponses({
+      type: 'update',
+      id,
+      content,
+    });
   };
 
   const hasResponses = optimisticResponses.length > 0;
@@ -52,7 +86,15 @@ export default function ResponseContainer({
       <h3 className="mb-4 text-base font-medium text-blue-600">
         댓글 {optimisticResponses.length}개
       </h3>
-      {hasResponses && <ResponseList responses={optimisticResponses} />}
+
+      {hasResponses && (
+        <ResponseList
+          responses={optimisticResponses}
+          currentUserId={currentUserId}
+          onUpdateSuccessAction={updateResponseAction}
+        />
+      )}
+
       <ResponseForm
         tweetId={tweetId}
         addResponseAction={addResponseAction}
