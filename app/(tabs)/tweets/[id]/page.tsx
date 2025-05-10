@@ -6,7 +6,7 @@ import { isCurrentUser } from '@/lib/auth';
 import db from '@/lib/db';
 import { formatToKorDate } from '@/lib/format';
 import { getSession } from '@/lib/session';
-import { getCurrentUsername } from '@/lib/user';
+import { getCurrentUser } from '@/lib/user';
 import { unstable_cache as nextCache } from 'next/cache';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -73,7 +73,7 @@ async function getResponses(tweetId: number) {
       },
     },
     orderBy: {
-      created_at: 'desc',
+      created_at: 'asc',
     },
   });
 
@@ -117,7 +117,9 @@ export default async function TweetDetailPage({
 
   const responses = await getCachedResponses(id);
 
-  const currentUsername = await getCurrentUsername();
+  const currentUser = await getCurrentUser({ id: true, username: true });
+  const currentUsername = currentUser?.username || '';
+  const currentUserId = currentUser?.id || 0;
 
   return (
     <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
@@ -164,6 +166,7 @@ export default async function TweetDetailPage({
         initialResponses={responses}
         tweetId={id}
         currentUsername={currentUsername}
+        currentUserId={currentUserId}
       />
     </main>
   );

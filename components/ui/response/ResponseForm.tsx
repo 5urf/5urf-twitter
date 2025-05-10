@@ -3,7 +3,9 @@
 import { addResponse } from '@/app/(tabs)/tweets/[id]/actions';
 import FormButton from '@/components/ui/form/FormButton';
 import { TWEET_VALIDATION } from '@/lib/constants';
-import { useActionState, useState, useTransition } from 'react';
+import { cn } from '@/lib/utils';
+import { useActionState, useEffect, useState, useTransition } from 'react';
+import { toast } from 'sonner';
 
 interface IResponseFormProps {
   tweetId: number;
@@ -25,28 +27,43 @@ export default function ResponseForm({
     charCount < TWEET_VALIDATION.MIN_LENGTH ||
     charCount > TWEET_VALIDATION.MAX_LENGTH;
 
+  useEffect(() => {
+    if (!state) return;
+
+    if (state.formErrors?.length) {
+      toast.error(state.formErrors[0]);
+      return;
+    }
+
+    if (state.message) {
+      toast.success(state.message);
+      setResponseText('');
+    }
+  }, [state]);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (invaild) return;
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData();
+    formData.append('content', responseText);
+    formData.append('tweetId', tweetId.toString());
 
     startTransition(() => {
-      addResponseAction(responseText);
-
       action(formData);
 
-      if (!state.fieldErrors && !state.formErrors) setResponseText('');
+      if (!state.fieldErrors && !state.formErrors) {
+        addResponseAction(responseText);
+      }
     });
   };
 
   return (
     <div
-      className={`retro-container rounded-t-none ${hasResponses ? 'mt-2' : ''}`}
+      className={cn('retro-container rounded-t-none', hasResponses && 'mt-2')}
     >
       <form onSubmit={handleSubmit}>
-        <input type="hidden" name="tweetId" value={tweetId} />
         <div className="mb-4">
           <textarea
             name="content"
@@ -59,9 +76,9 @@ export default function ResponseForm({
             minLength={TWEET_VALIDATION.MIN_LENGTH}
             disabled={isPending}
           />
-          <div className="mt-2 text-sm text-red-500">
-            {state.fieldErrors?.content || state.formErrors?.[0]}
-          </div>
+          <small className="mt-2 text-sm text-red-500">
+            {state.fieldErrors?.content}
+          </small>
           <div className="mt-2 flex justify-end">
             <div className="text-sm text-gray-500">
               {responseText.length}/{TWEET_VALIDATION.MAX_LENGTH}
