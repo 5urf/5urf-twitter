@@ -1,7 +1,10 @@
 'use client';
 
+import { deleteResponse } from '@/app/(tabs)/tweets/[id]/actions';
 import { formatToKorDate } from '@/lib/format';
 import Link from 'next/link';
+import { startTransition, useState } from 'react';
+import { toast } from 'sonner';
 
 interface IResponseViewModeProps {
   id: number;
@@ -11,6 +14,7 @@ interface IResponseViewModeProps {
   isPending?: boolean;
   isOwner?: boolean;
   onEditClickAction: () => void;
+  onDeleteClickAction?: (id: number) => void;
 }
 
 export default function ResponseViewMode({
@@ -21,7 +25,39 @@ export default function ResponseViewMode({
   isPending = false,
   isOwner = false,
   onEditClickAction,
+  onDeleteClickAction,
 }: IResponseViewModeProps) {
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDelete = async () => {
+    if (isDeleting || !onDeleteClickAction) return;
+
+    const confirmed = window.confirm('정말로 댓글을 삭제하시겠습니까?');
+    if (!confirmed) return;
+
+    setIsDeleting(true);
+
+    try {
+      const result = await deleteResponse(id);
+
+      if (!result.success) {
+        toast.error(result.error);
+        setIsDeleting(false);
+        return;
+      }
+
+      toast.success(result.message);
+
+      startTransition(() => {
+        onDeleteClickAction(id);
+      });
+    } catch (error) {
+      toast.error('댓글 삭제 중 오류가 발생했습니다');
+      console.error(error);
+      setIsDeleting(false);
+    }
+  };
+
   return (
     <div className="p-4">
       <div className="mb-2 flex items-center justify-between">
@@ -44,6 +80,13 @@ export default function ResponseViewMode({
               className="text-sm text-blue-500 hover:text-blue-700"
             >
               수정
+            </button>
+            <button
+              onClick={handleDelete}
+              disabled={isDeleting}
+              className="text-sm text-red-500 hover:text-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {isDeleting ? '삭제 중...' : '삭제'}
             </button>
           </div>
         )}

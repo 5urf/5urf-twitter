@@ -16,7 +16,12 @@ interface IAddAction {
   content: string;
 }
 
-type ResponseAction = IUpdateAction | IAddAction;
+interface IDeleteAction {
+  type: 'delete';
+  id: number;
+}
+
+type ResponseAction = IUpdateAction | IAddAction | IDeleteAction;
 
 interface IResponseContainerProps {
   initialResponses: ResponseType[];
@@ -61,6 +66,10 @@ export default function ResponseContainer({
       );
     }
 
+    if (update.type === 'delete') {
+      return state.filter((response) => response.id !== update.id);
+    }
+
     return state;
   });
 
@@ -79,6 +88,13 @@ export default function ResponseContainer({
     });
   };
 
+  const deleteResponseAction = (id: number) => {
+    updateOptimisticResponses({
+      type: 'delete',
+      id,
+    });
+  };
+
   const hasResponses = optimisticResponses.length > 0;
 
   return (
@@ -92,6 +108,7 @@ export default function ResponseContainer({
           responses={optimisticResponses}
           currentUserId={currentUserId}
           onUpdateSuccessAction={updateResponseAction}
+          onDeleteSuccessAction={deleteResponseAction}
         />
       )}
 

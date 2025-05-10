@@ -125,20 +125,15 @@ export async function updateResponse(
     };
   }
 
+  const { tweetId } = validation.response;
+
   try {
     await db.response.update({
       where: { id: result.data.responseId },
       data: { content: result.data.content },
     });
 
-    const response = await db.response.findUnique({
-      where: { id: result.data.responseId },
-      select: { tweetId: true },
-    });
-
-    if (response) {
-      revalidateTag(`tweet-responses-${response.tweetId}`);
-    }
+    revalidateTag(`tweet-responses-${tweetId}`);
 
     return {
       message: '댓글이 수정되었습니다.',
@@ -147,6 +142,34 @@ export async function updateResponse(
     console.error('Response update error:', error);
     return {
       formErrors: ['댓글 수정 중 오류가 발생했습니다.'],
+    };
+  }
+}
+
+export async function deleteResponse(responseId: number) {
+  try {
+    const validation = await validateResponseOwnership(responseId);
+    if (!validation.success) {
+      return validation;
+    }
+
+    const { tweetId } = validation.response;
+
+    await db.response.delete({
+      where: { id: responseId },
+    });
+
+    revalidateTag(`tweet-responses-${tweetId}`);
+
+    return {
+      success: true,
+      message: '댓글이 삭제되었습니다.',
+    };
+  } catch (error) {
+    console.error('Response delete error:', error);
+    return {
+      success: false,
+      error: '댓글 삭제 중 오류가 발생했습니다.',
     };
   }
 }

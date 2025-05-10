@@ -9,10 +9,10 @@ interface IResponseItemProps {
   content: string;
   created_at: Date;
   username: string;
-  userId: number;
   isPending?: boolean;
   isOwner?: boolean;
   onUpdateSuccessAction?: (id: number, newContent: string) => void;
+  onDeleteSuccessAction?: (id: number) => void;
 }
 
 export default function ResponseItem({
@@ -20,10 +20,10 @@ export default function ResponseItem({
   content,
   created_at,
   username,
-  userId,
   isPending = false,
   isOwner = false,
   onUpdateSuccessAction,
+  onDeleteSuccessAction,
 }: IResponseItemProps) {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -62,6 +62,7 @@ export default function ResponseItem({
       isPending={isPending}
       isOwner={isOwner}
       onEditClickAction={handleEditStartAction}
+      onDeleteClickAction={onDeleteSuccessAction}
     />
   );
 }
