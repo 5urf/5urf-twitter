@@ -1,8 +1,8 @@
 'use server';
 
-import { isCurrentUser } from '@/lib/auth';
 import { TWEET_VALIDATION } from '@/lib/constants';
 import db from '@/lib/db';
+import { validateTweetOwnership } from '@/lib/tweet';
 import { FormActionState } from '@/types/formActionState';
 import { revalidateTag } from 'next/cache';
 import { z } from 'zod';
@@ -40,21 +40,10 @@ export async function updateTweet(
 
   const { tweet } = result.data;
 
-  const existingTweet = await db.tweet.findUnique({
-    where: { id: tweetId },
-    select: { userId: true },
-  });
-
-  if (!existingTweet) {
+  const validation = await validateTweetOwnership(tweetId);
+  if (!validation.success) {
     return {
-      formErrors: ['트윗을 찾을 수 없습니다.'],
-    };
-  }
-
-  const isOwner = await isCurrentUser(existingTweet.userId);
-  if (!isOwner) {
-    return {
-      formErrors: ['트윗을 수정할 권한이 없습니다.'],
+      formErrors: [validation.error],
     };
   }
 
@@ -74,6 +63,30 @@ export async function updateTweet(
     console.error('Tweet update error:', error);
     return {
       formErrors: ['트윗 수정 중 오류가 발생했습니다.'],
+    };
+  }
+}
+
+export async function deleteTweet(tweetId: number) {
+  try {
+    const validation = await validateTweetOwnership(tweetId);
+    if (!validation.success) {
+      return { success: false, error: validation.error };
+    }
+
+    await db.tweet.delete({
+      where: { id: tweetId },
+    });
+
+    return {
+      success: true,
+      message: '트윗이 삭제되었습니다.',
+    };
+  } catch (error) {
+    console.error('Tweet delete error:', error);
+    return {
+      success: false,
+      error: '트윗 삭제 중 오류가 발생했습니다.',
     };
   }
 }

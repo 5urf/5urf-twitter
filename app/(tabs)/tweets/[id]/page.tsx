@@ -1,6 +1,7 @@
 import BackButton from '@/components/ui/BackButton';
 import LikeButton from '@/components/ui/LikeButton';
 import ResponseContainer from '@/components/ui/response/ResponseContainer';
+import DeleteTweetButton from '@/components/ui/tweet/DeleteTweetButton';
 import { isCurrentUser } from '@/lib/auth';
 import db from '@/lib/db';
 import { formatToKorDate } from '@/lib/format';
@@ -153,9 +154,7 @@ export default async function TweetDetailPage({
                 >
                   수정
                 </Link>
-                <button className="retro-button border-red-500 bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600">
-                  삭제
-                </button>
+                <DeleteTweetButton tweetId={id} />
               </div>
             )}
           </div>
