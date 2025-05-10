@@ -89,7 +89,9 @@ export async function addResponse(
 
     revalidateTag(`tweet-responses-${result.data.tweetId}`);
 
-    return {};
+    return {
+      message: '댓글이 추가되었습니다.',
+    };
   } catch (error) {
     console.error(error);
     return {
