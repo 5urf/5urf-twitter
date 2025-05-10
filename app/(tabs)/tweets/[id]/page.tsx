@@ -1,6 +1,7 @@
 import BackButton from '@/components/ui/BackButton';
 import LikeButton from '@/components/ui/LikeButton';
 import ResponseContainer from '@/components/ui/response/ResponseContainer';
+import DeleteTweetButton from '@/components/ui/tweet/DeleteTweetButton';
 import { isCurrentUser } from '@/lib/auth';
 import db from '@/lib/db';
 import { formatToKorDate } from '@/lib/format';
@@ -120,7 +121,7 @@ export default async function TweetDetailPage({
 
   return (
     <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
-      <BackButton />
+      <BackButton fallbackPath="/" />
       <div className="retro-container overflow-hidden p-0">
         <div className="border-b-2 border-gray-300 p-5">
           <Link
@@ -147,12 +148,13 @@ export default async function TweetDetailPage({
             </div>
             {isOwner && (
               <div className="space-x-2">
-                <button className="retro-button border-blue-500 bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600">
+                <Link
+                  href={`/tweets/${id}/edit`}
+                  className="retro-button border-blue-500 bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600"
+                >
                   수정
-                </button>
-                <button className="retro-button border-red-500 bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600">
-                  삭제
-                </button>
+                </Link>
+                <DeleteTweetButton tweetId={id} />
               </div>
             )}
           </div>
