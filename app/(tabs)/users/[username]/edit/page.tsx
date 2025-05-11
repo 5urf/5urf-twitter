@@ -108,7 +108,9 @@ export default function ProfileEditPage({ params }: IProfileEditPageProps) {
 
   return (
     <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
-      <BackButton />
+      <BackButton
+        fallbackPath={`/users/${encodeURIComponent(decodedUsername)}`}
+      />
       <h1 className="mb-6 text-xl font-medium text-blue-600">프로필 편집</h1>
       {optimisticProfile && (
         <ProfileInfoForm

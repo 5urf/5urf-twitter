@@ -3,9 +3,10 @@
 import { ACCOUNT_VALIDATION } from '@/lib/constants';
 import db from '@/lib/db';
 import { getSession } from '@/lib/session';
+import { getCurrentUsername } from '@/lib/user';
 import { FormActionState } from '@/types/formActionState';
 import bcrypt from 'bcryptjs';
-import { revalidateTag } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { z } from 'zod';
 
 const profileUpdateSchema = z
@@ -124,6 +125,9 @@ export async function updateProfile(
   }
 
   try {
+    const oldUsername = await getCurrentUsername();
+    const newUsername = result.data.username;
+
     await db.user.update({
       where: {
         id: userId,
@@ -136,6 +140,20 @@ export async function updateProfile(
     });
 
     revalidateTag('user-profile');
+
+    if (oldUsername !== newUsername) {
+      revalidatePath('/', 'layout');
+
+      if (oldUsername) {
+        revalidatePath(`/users/${encodeURIComponent(oldUsername)}`, 'page');
+      }
+
+      revalidatePath(`/users/${encodeURIComponent(newUsername)}`, 'page');
+
+      revalidatePath('/tweets', 'layout');
+
+      revalidatePath('/search', 'page');
+    }
 
     return {
       message: '프로필이 성공적으로 변경되었습니다.',
