@@ -18,11 +18,7 @@ const accountFormSchema = z
       })
       .email(ACCOUNT_VALIDATION.ERROR_MESSAGES.EMAIL.INVALID_FORMAT)
       .trim()
-      .toLowerCase()
-      .regex(
-        ACCOUNT_VALIDATION.PATTERNS.EMAIL_DOMAIN,
-        ACCOUNT_VALIDATION.ERROR_MESSAGES.EMAIL.DOMAIN
-      ),
+      .toLowerCase(),
     username: z
       .string({
         required_error: ACCOUNT_VALIDATION.ERROR_MESSAGES.USERNAME.REQUIRED,
