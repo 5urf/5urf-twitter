@@ -11,6 +11,7 @@ import {
 import { getUserByUsername } from '@/lib/user';
 import { Pencil } from 'lucide-react';
 import { Metadata } from 'next';
+import { unstable_cache as nextCache } from 'next/cache';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -50,6 +51,17 @@ async function getUserTweets(userId: number, page: number, pageSize: number) {
   };
 }
 
+const getCachedUserProfile = nextCache(
+  async (username: string) => {
+    return await getUserByUsername(username);
+  },
+  ['user-profile'],
+  {
+    tags: ['user-profile'],
+    revalidate: 60,
+  }
+);
+
 interface IUserProfilePageProps {
   params: Promise<{ username: string }>;
   searchParams: Promise<{ page?: string }>;
@@ -82,7 +94,7 @@ export default async function UserProfilePage({
   const page = await getPageFromSearchParams(searchParams);
   const pageSize = DEFAULT_PAGE_SIZE;
 
-  const user = await getUserByUsername(decodeUsername);
+  const user = await getCachedUserProfile(decodeUsername);
   if (!user) notFound();
 
   const { tweets, totalPages } = await getUserTweets(user.id, page, pageSize);
