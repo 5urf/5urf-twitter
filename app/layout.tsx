@@ -27,6 +27,25 @@ export const metadata: Metadata = {
   keywords: ['소셜미디어', '트위터', 'SNS'],
   authors: [{ name: '5urf' }],
   creator: '5urf',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      {
+        url: '/android-chrome-192x192.png',
+        sizes: '192x192',
+        type: 'image/png',
+      },
+      {
+        url: '/android-chrome-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+      },
+    ],
+    apple: [{ url: '/apple-touch-icon.png' }],
+    shortcut: [{ url: '/favicon.ico' }],
+  },
   openGraph: {
     title: '5urf Twitter',
     description: '당신의 생각과 순간을 공유하는 공간',
