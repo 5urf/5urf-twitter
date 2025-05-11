@@ -42,7 +42,7 @@ export default function ResponseEditMode({
         onSuccessAction(content);
       });
     }
-  }, [state]);
+  }, [state, content, onSuccessAction]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

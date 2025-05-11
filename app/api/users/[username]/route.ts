@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
   _: NextRequest,
-  { params }: { params: { username: string } }
+  { params }: { params: Promise<{ username: string }> }
 ) {
   try {
     const session = await getSession();
@@ -16,8 +16,10 @@ export async function GET(
       );
     }
 
-    const username = decodeURIComponent(params.username);
-    const user = await getUserByUsername(username);
+    const { username } = await params;
+
+    const decodeUsername = decodeURIComponent(username);
+    const user = await getUserByUsername(decodeUsername);
 
     if (!user) {
       return NextResponse.json(

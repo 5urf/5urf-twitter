@@ -1,7 +1,7 @@
 'use client';
 
 import { ResponseType } from '@/types/response';
-import { useOptimistic } from 'react';
+import { useCallback, useOptimistic } from 'react';
 import ResponseForm from './ResponseForm';
 import ResponseList from './ResponseList';
 
@@ -80,13 +80,16 @@ export default function ResponseContainer({
     });
   };
 
-  const updateResponseAction = (id: number, content: string) => {
-    updateOptimisticResponses({
-      type: 'update',
-      id,
-      content,
-    });
-  };
+  const updateResponseAction = useCallback(
+    (id: number, content: string) => {
+      updateOptimisticResponses({
+        type: 'update',
+        id,
+        content,
+      });
+    },
+    [updateOptimisticResponses]
+  );
 
   const deleteResponseAction = (id: number) => {
     updateOptimisticResponses({

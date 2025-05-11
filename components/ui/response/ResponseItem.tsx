@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import ResponseEditMode from './ResponseEditMode';
 import ResponseViewMode from './ResponseViewMode';
 
@@ -35,12 +35,15 @@ export default function ResponseItem({
     setIsEditing(false);
   };
 
-  const handleEditSuccessAction = (newContent: string) => {
-    if (!onUpdateSuccessAction) return;
+  const handleEditSuccessAction = useCallback(
+    (newContent: string) => {
+      if (!onUpdateSuccessAction) return;
 
-    onUpdateSuccessAction(id, newContent);
-    setIsEditing(false);
-  };
+      onUpdateSuccessAction(id, newContent);
+      setIsEditing(false);
+    },
+    [id, onUpdateSuccessAction]
+  );
 
   if (isEditing) {
     return (
