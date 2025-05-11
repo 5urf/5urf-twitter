@@ -1,11 +1,21 @@
 import SearchForm from '@/components/ui/search/SearchForm';
 import SearchResults from '@/components/ui/search/SearchResults';
 import { getPageFromSearchParams } from '@/lib/pagination';
+import { Metadata } from 'next';
 import { searchTweets } from './actions';
 
 interface ISearchPageProps {
   searchParams: Promise<{ q?: string; page?: string }>;
 }
+
+export const metadata: Metadata = {
+  title: '검색',
+  description: '사람들의 이야기와 관심사를 검색해보세요.',
+  openGraph: {
+    title: '검색 | 5urf Twitter',
+    description: '사람들의 이야기와 관심사를 검색해보세요.',
+  },
+};
 
 export default async function SearchPage({ searchParams }: ISearchPageProps) {
   const { q: query = '' } = await searchParams;

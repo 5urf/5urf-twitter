@@ -1,4 +1,14 @@
 import LogoutButton from '@/components/ui/settings/LogoutButton';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '설정',
+  description: '계정 설정을 관리하세요.',
+  openGraph: {
+    title: '설정 | 5urf Twitter',
+    description: '계정 설정을 관리하세요.',
+  },
+};
 
 export default function SettingsPage() {
   return (

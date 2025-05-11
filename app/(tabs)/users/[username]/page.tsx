@@ -10,6 +10,7 @@ import {
 } from '@/lib/pagination';
 import { getUserByUsername } from '@/lib/user';
 import { Pencil } from 'lucide-react';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -52,6 +53,22 @@ async function getUserTweets(userId: number, page: number, pageSize: number) {
 interface IUserProfilePageProps {
   params: Promise<{ username: string }>;
   searchParams: Promise<{ page?: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: Pick<IUserProfilePageProps, 'params'>): Promise<Metadata> {
+  const { username } = await params;
+  const decodeUsername = decodeURIComponent(username);
+
+  return {
+    title: `${decodeUsername}의 프로필`,
+    description: `${decodeUsername}님의 이야기와 활동을 확인해보세요.`,
+    openGraph: {
+      title: `${decodeUsername} | 5urf Twitter`,
+      description: `${decodeUsername}님의 이야기와 활동을 확인해보세요.`,
+    },
+  };
 }
 
 export default async function UserProfilePage({

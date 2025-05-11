@@ -2,13 +2,8 @@ import BackButton from '@/components/ui/BackButton';
 import EditTweetForm from '@/components/ui/tweet/EditTweetForm';
 import { isCurrentUser } from '@/lib/auth';
 import db from '@/lib/db';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-
-interface ITweetEditPageProps {
-  params: Promise<{
-    id: string;
-  }>;
-}
 
 async function getTweet(id: number) {
   const tweet = await db.tweet.findUnique({
@@ -33,6 +28,41 @@ async function getTweet(id: number) {
   }
 
   return tweet;
+}
+
+interface ITweetEditPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+export async function generateMetadata({
+  params,
+}: ITweetEditPageProps): Promise<Metadata> {
+  const id = Number((await params).id);
+
+  if (isNaN(id)) {
+    return {
+      title: '트윗 수정',
+    };
+  }
+
+  const tweet = await getTweet(id);
+
+  if (!tweet) {
+    return {
+      title: '트윗 수정',
+    };
+  }
+
+  return {
+    title: '트윗 수정',
+    description: '작성한 트윗을 수정합니다.',
+    openGraph: {
+      title: '트윗 수정 | 5urf Twitter',
+      description: '작성한 트윗을 수정합니다.',
+    },
+  };
 }
 
 export default async function TweetEditPage({ params }: ITweetEditPageProps) {
