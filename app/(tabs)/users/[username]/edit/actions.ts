@@ -5,6 +5,7 @@ import db from '@/lib/db';
 import { getSession } from '@/lib/session';
 import { FormActionState } from '@/types/formActionState';
 import bcrypt from 'bcryptjs';
+import { revalidateTag } from 'next/cache';
 import { z } from 'zod';
 
 const profileUpdateSchema = z
@@ -133,6 +134,8 @@ export async function updateProfile(
         bio: result.data.bio,
       },
     });
+
+    revalidateTag('user-profile');
 
     return {
       message: '프로필이 성공적으로 변경되었습니다.',
