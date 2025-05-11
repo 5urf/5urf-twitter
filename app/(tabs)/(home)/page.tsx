@@ -8,6 +8,7 @@ import {
   getPaginationParams,
 } from '@/lib/pagination';
 import { Prisma } from '@prisma/client';
+import { Metadata } from 'next';
 
 async function getTotalPages(pageSize: number) {
   const totalTweets = await db.tweet.count();
@@ -48,6 +49,15 @@ export type Tweets = Prisma.PromiseReturnType<typeof getTweets>;
 interface IHomePagePageProps {
   searchParams: Promise<{ page?: string }>;
 }
+
+export const metadata: Metadata = {
+  title: '홈',
+  description: '최신 소식을 확인하고, 나만의 이야기를 공유해보세요.',
+  openGraph: {
+    title: '5urf Twitter | 홈',
+    description: '최신 소식을 확인하고, 나만의 이야기를 공유해보세요.',
+  },
+};
 
 export default async function HomePage({ searchParams }: IHomePagePageProps) {
   const page = await getPageFromSearchParams(searchParams);

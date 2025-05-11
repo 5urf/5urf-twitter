@@ -1,6 +1,5 @@
 export const ACCOUNT_VALIDATION = {
   PATTERNS: {
-    EMAIL_DOMAIN: /@zod\.com$/,
     CONTAINS_NUMBER: /\d/,
   },
 
@@ -14,7 +13,7 @@ export const ACCOUNT_VALIDATION = {
       REQUIRED: '이메일은 필수 입력 항목입니다',
       INVALID_TYPE: '이메일은 문자열이어야 합니다',
       INVALID_FORMAT: '올바르지 않은 이메일 형식입니다',
-      DOMAIN: '@zod.com 이메일만 허용됩니다',
+      DOMAIN: '유효한 이메일 주소를 입력해주세요',
       DUPLICATE: '이 이메일은 이미 사용 중입니다',
       NOT_FOUND: '해당 이메일로 등록된 계정이 존재하지 않습니다',
     },

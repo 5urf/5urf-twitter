@@ -7,6 +7,7 @@ import db from '@/lib/db';
 import { formatToKorDate } from '@/lib/format';
 import { getSession } from '@/lib/session';
 import { getCurrentUser } from '@/lib/user';
+import { Metadata } from 'next';
 import { unstable_cache as nextCache } from 'next/cache';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -98,6 +99,40 @@ async function getCachedLikeStatus(tweetId: number) {
 
 interface ITweetDetailPageProps {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: ITweetDetailPageProps): Promise<Metadata> {
+  const id = Number((await params).id);
+
+  if (isNaN(id)) {
+    return {
+      title: '트윗을 찾을 수 없습니다',
+    };
+  }
+
+  const tweet = await getCachedTweet(id);
+
+  if (!tweet) {
+    return {
+      title: '트윗을 찾을 수 없습니다',
+    };
+  }
+
+  const previewContent =
+    tweet.tweet.length > 100
+      ? tweet.tweet.substring(0, 50) + '...'
+      : tweet.tweet;
+
+  return {
+    title: `${tweet.user.username}님의 트윗`,
+    description: previewContent,
+    openGraph: {
+      title: `${tweet.user.username}님의 트윗 | 5urf Twitter`,
+      description: previewContent,
+    },
+  };
 }
 
 export default async function TweetDetailPage({
