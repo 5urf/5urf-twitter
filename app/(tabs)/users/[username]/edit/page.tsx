@@ -3,16 +3,13 @@
 import BackButton from '@/components/ui/BackButton';
 import PasswordChangeForm from '@/components/ui/profile/PasswordChangeForm';
 import ProfileInfoForm from '@/components/ui/profile/ProfileInfoForm';
+import UserWithdrawalButton from '@/components/ui/profile/UserWithdrawalButton';
+import { User } from '@prisma/client';
 import Link from 'next/link';
 import { use, useEffect, useOptimistic, useState } from 'react';
 import { toast } from 'sonner';
 
-interface IUserProfile {
-  username: string;
-  email: string;
-  bio: string | null;
-}
-
+type UserProfile = Pick<User, 'id' | 'username' | 'email' | 'bio'>;
 interface IProfileEditPageProps {
   params: Promise<{ username: string }>;
 }
@@ -22,11 +19,11 @@ export default function ProfileEditPage({ params }: IProfileEditPageProps) {
   const { username } = resolvedParams;
   const decodedUsername = decodeURIComponent(username);
 
-  const [profile, setProfile] = useState<IUserProfile | null>(null);
+  const [profile, setProfile] = useState<UserProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [optimisticProfile, updateOptimisticProfile] = useOptimistic<
-    IUserProfile | null,
-    Partial<IUserProfile>
+    UserProfile | null,
+    Partial<UserProfile>
   >(profile, (state, newData) => {
     if (!state) return state;
     return {
@@ -113,13 +110,18 @@ export default function ProfileEditPage({ params }: IProfileEditPageProps) {
       />
       <h1 className="mb-6 text-xl font-medium text-blue-600">프로필 편집</h1>
       {optimisticProfile && (
-        <ProfileInfoForm
-          profile={optimisticProfile}
-          currentUsername={decodedUsername}
-          onProfileUpdateAction={updateOptimisticProfile}
-        />
+        <>
+          <ProfileInfoForm
+            profile={optimisticProfile}
+            currentUsername={decodedUsername}
+            onProfileUpdateAction={updateOptimisticProfile}
+          />
+          <PasswordChangeForm />
+          <div className="retro-container mt-6">
+            <UserWithdrawalButton />
+          </div>
+        </>
       )}
-      <PasswordChangeForm />
     </main>
   );
 }
