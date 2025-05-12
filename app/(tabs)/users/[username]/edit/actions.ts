@@ -225,3 +225,65 @@ export async function updatePassword(
     };
   }
 }
+
+export async function withdrawUser(
+  _: FormActionState,
+  formData: FormData
+): Promise<FormActionState> {
+  const session = await getSession();
+  const userId = session.id;
+
+  if (!userId) {
+    return {
+      formErrors: ['로그인이 필요합니다.'],
+    };
+  }
+
+  const password = formData.get('password')?.toString();
+
+  if (!password) {
+    return {
+      fieldErrors: {
+        password: ['비밀번호를 입력해주세요.'],
+      },
+    };
+  }
+
+  try {
+    const user = await db.user.findUnique({
+      where: { id: userId },
+      select: { password: true },
+    });
+
+    if (!user) {
+      return {
+        formErrors: ['사용자를 찾을 수 없습니다.'],
+      };
+    }
+
+    const passwordMatches = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatches) {
+      return {
+        fieldErrors: {
+          password: ['비밀번호가 일치하지 않습니다.'],
+        },
+      };
+    }
+
+    await db.user.delete({
+      where: { id: userId },
+    });
+
+    await session.destroy();
+
+    return {
+      message: '회원 탈퇴가 완료되었습니다.',
+    };
+  } catch (error) {
+    console.error('User withdrawal error:', error);
+    return {
+      formErrors: ['회원 탈퇴 중 오류가 발생했습니다.'],
+    };
+  }
+}
