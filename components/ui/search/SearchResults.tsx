@@ -75,7 +75,7 @@ export default function SearchResults({
             'border-[var(--text-primary)] dark:border-[var(--accent-primary)]'
           )}
         />
-        <p className="mt-2">검색 중...</p>
+        <p className="mt-2 text-[var(--text-secondary)]">검색 중...</p>
       </div>
     );
   }
@@ -83,8 +83,8 @@ export default function SearchResults({
   if (results.tweets.length === 0) {
     return (
       <div className="retro-container mt-8 p-6 text-center">
-        <p className="text-gray-600">검색 결과가 없습니다.</p>
-        <p className="mt-2 text-sm text-gray-500">
+        <p className="text-[var(--text-secondary)]">검색 결과가 없습니다.</p>
+        <p className="mt-2 text-sm text-[var(--text-tertiary)]">
           다른 검색어를 입력해 보세요.
         </p>
       </div>
