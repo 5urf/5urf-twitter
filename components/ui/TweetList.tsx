@@ -16,7 +16,9 @@ const TweetList = ({
   emptyMessage = 'tweet이 없습니다',
 }: ITweetListProps) => {
   if (tweets.length === 0) {
-    return <p className="text-center text-gray-500">{emptyMessage}</p>;
+    return (
+      <p className="text-center text-[var(--text-secondary)]">{emptyMessage}</p>
+    );
   }
 
   return (
@@ -25,13 +27,16 @@ const TweetList = ({
         <li key={tweet.id} className="retro-container p-4">
           <Link
             href={`/tweets/${tweet.id}`}
-            className="-m-4 block p-4 transition hover:bg-gray-50"
+            className={cn(
+              '-m-4 block p-4 transition',
+              'hover:bg-[var(--hover-light)] dark:hover:bg-[var(--hover-bg)]'
+            )}
           >
-            <div className="font-medium text-blue-600">
+            <div className="font-medium text-[var(--accent-primary)]">
               {tweet.user.username}
             </div>
             <p className="mt-1 whitespace-pre-wrap">{tweet.tweet}</p>
-            <div className="mt-2 flex items-center justify-between text-xs text-gray-500">
+            <div className="mt-2 flex items-center justify-between text-xs text-[var(--text-secondary)]">
               <span>{formatToKorDate(tweet.created_at)}</span>
               <div className="flex items-center space-x-4">
                 <span className="flex items-center">

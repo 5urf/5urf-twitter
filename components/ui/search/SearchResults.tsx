@@ -3,6 +3,7 @@
 import { searchTweets } from '@/app/(tabs)/search/actions';
 import Pagination from '@/components/ui/Pagination';
 import TweetList from '@/components/ui/TweetList';
+import { cn } from '@/lib/utils';
 import { Tweet } from '@prisma/client';
 import { useEffect, useState } from 'react';
 
@@ -57,8 +58,8 @@ export default function SearchResults({
   if (!hasSearched) {
     return (
       <div className="retro-container mt-8 p-6 text-center">
-        <p className="text-gray-600">검색어를 입력하세요.</p>
-        <p className="mt-2 text-sm text-gray-500">
+        <p className="text-[var(--text-secondary)]">검색어를 입력하세요.</p>
+        <p className="mt-2 text-sm text-[var(--text-tertiary)]">
           트윗 내용과 사용자 이름으로 검색할 수 있습니다.
         </p>
       </div>
@@ -68,7 +69,12 @@ export default function SearchResults({
   if (isLoading) {
     return (
       <div className="mt-8 flex flex-col items-center justify-center">
-        <div className="h-10 w-10 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
+        <div
+          className={cn(
+            'h-10 w-10 animate-spin rounded-full border-4 border-t-transparent',
+            'border-[var(--text-primary)] dark:border-[var(--accent-primary)]'
+          )}
+        />
         <p className="mt-2">검색 중...</p>
       </div>
     );

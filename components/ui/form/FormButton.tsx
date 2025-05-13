@@ -24,8 +24,10 @@ export default function FormButton({
     <button
       disabled={disabled || pending}
       className={cn(
-        'retro-button w-full border-blue-600 bg-blue-600 py-3 text-white',
-        'hover:border-blue-700 hover:bg-blue-700',
+        'retro-button w-full py-3',
+        'border-[var(--accent-primary)] bg-[var(--accent-primary)]',
+        'text-white dark:text-black',
+        'hover:border-[var(--accent-secondary)] hover:bg-[var(--accent-secondary)]',
         'disabled:cursor-not-allowed disabled:opacity-70',
         className
       )}

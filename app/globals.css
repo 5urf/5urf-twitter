@@ -3,8 +3,64 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --bg-primary: #f9fafb; /* bg-gray-50 */
+    --bg-secondary: #ffffff; /* bg-white */
+    --bg-tertiary: #f3f4f6; /* bg-gray-100 */
+
+    --text-primary: #111827; /* text-gray-900 */
+    --text-secondary: #6b7280; /* text-gray-500 */
+    --text-tertiary: #9ca3af; /* text-gray-400 */
+
+    --border-primary: #d1d5db; /* border-gray-300 */
+    --border-secondary: #e5e7eb; /* border-gray-200 */
+
+    --accent-primary: #3b82f6; /* text-blue-600 */
+    --accent-secondary: #2563eb; /* hover:bg-blue-700 */
+    --accent-light: #dbeafe; /* bg-blue-100 */
+
+    --error: #ef4444; /* text-red-500 */
+    --error-light: #fee2e2; /* bg-red-50 */
+    --success: #10b981; /* text-green-500 */
+
+    --hover-bg: #f3f4f6; /* hover:bg-gray-100 */
+    --hover-light: #f9fafb; /* hover:bg-gray-50 */
+
+    --shadow-retro: 0 4px 0 #d1d5db;
+  }
+
+  :root.dark {
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #1a1a1a;
+    --bg-tertiary: #121212;
+
+    --text-primary: #e5e7eb;
+    --text-secondary: #9ca3af;
+    --text-tertiary: #6b7280;
+
+    --border-primary: #374151;
+    --border-secondary: #1f2937;
+
+    --accent-primary: #86efac;
+    --accent-secondary: #65dc8a;
+    --accent-light: #064e3b;
+
+    --error: #f87171;
+    --error-light: #450a0a;
+    --success: #86efac;
+
+    --hover-bg: #1f1f1f;
+    --hover-light: #171717;
+
+    --shadow-retro: 0 0 10px rgba(134, 239, 172, 0.1);
+  }
+
   body {
-    @apply bg-gray-100 font-mono;
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
   }
   h1,
   h2,
@@ -18,18 +74,35 @@
 
 @layer components {
   .retro-container {
-    @apply border-2 border-gray-300 bg-white p-8 shadow-md;
+    @apply border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] p-8;
   }
 
   .retro-input {
-    @apply rounded-none border-2 font-mono;
+    @apply rounded-none border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] font-mono text-[var(--text-primary)];
+  }
+
+  .retro-input::placeholder {
+    color: var(--text-secondary);
   }
 
   .retro-button {
-    @apply rounded-none border-2 font-mono transition-colors;
+    @apply rounded-none border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] font-mono text-[var(--text-primary)] transition-colors;
+  }
+
+  .retro-button:hover {
+    background-color: var(--hover-bg);
   }
 
   .username-link {
-    @apply rounded px-1 py-0.5 font-medium text-blue-600 transition-colors hover:bg-blue-100;
+    color: var(--accent-primary);
+    @apply rounded px-1 py-0.5 font-medium transition-colors;
+  }
+
+  .username-link:hover {
+    background-color: var(--accent-light);
+  }
+
+  .dark .tweet-hover:hover {
+    background-color: var(--hover-bg);
   }
 }

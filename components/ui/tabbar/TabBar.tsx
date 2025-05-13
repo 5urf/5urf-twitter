@@ -14,7 +14,7 @@ export default function TabBar({ username }: { username?: string }) {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 mx-auto border-t-2 border-gray-300 bg-white">
+    <div className="fixed bottom-0 left-0 right-0 mx-auto border-t-2 border-[var(--border-primary)] bg-[var(--bg-secondary)]">
       <nav className="mx-auto grid max-w-screen-md grid-cols-4">
         <TabItem
           href="/"

@@ -19,17 +19,26 @@ export default function TabItem({
       href={href}
       className={cn(
         'flex flex-col items-center px-1 py-3',
-        'transition-colors hover:bg-gray-100',
-        isActive && 'bg-gray-100'
+        'transition-colors hover:bg-[var(--hover-light)] dark:hover:bg-[var(--hover-bg)]',
+        isActive && 'bg-[var(--hover-light)] dark:bg-[var(--hover-bg)]'
       )}
     >
-      <div className={cn('mb-1', isActive ? 'text-blue-600' : 'text-gray-700')}>
+      <div
+        className={cn(
+          'mb-1',
+          isActive
+            ? 'text-[var(--accent-primary)]'
+            : 'text-[var(--text-secondary)]'
+        )}
+      >
         {icon}
       </div>
       <span
         className={cn(
           'font-pixel text-xs',
-          isActive ? 'text-blue-600' : 'text-gray-700'
+          isActive
+            ? 'text-[var(--accent-primary)]'
+            : 'text-[var(--text-secondary)]'
         )}
       >
         {label}

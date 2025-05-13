@@ -1,5 +1,6 @@
 'use client';
 
+import { cn } from '@/lib/utils';
 import { Search } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
@@ -27,11 +28,15 @@ export default function SearchForm({ initialQuery = '' }: ISearchFormProps) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="검색어를 입력하세요."
-          className="retro-input w-full border-gray-300 py-3 pl-3 pr-12 focus:border-blue-400"
+          className="retro-input w-full py-3 pl-3 pr-12 focus:border-[var(--accent-primary)]"
         />
         <button
           type="submit"
-          className="absolute right-0 top-0 h-full cursor-pointer px-4 text-gray-500 transition-colors disabled:cursor-not-allowed"
+          className={cn(
+            'absolute right-0 top-0 h-full cursor-pointer px-4 transition-colors',
+            'text-[var(--text-secondary)] hover:text-[var(--accent-primary)]',
+            'disabled:cursor-not-allowed'
+          )}
           disabled={!query.trim()}
         >
           <Search className="size-5" />

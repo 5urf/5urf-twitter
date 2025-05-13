@@ -7,6 +7,7 @@ import db from '@/lib/db';
 import { formatToKorDate } from '@/lib/format';
 import { getSession } from '@/lib/session';
 import { getCurrentUser } from '@/lib/user';
+import { cn } from '@/lib/utils';
 import { Metadata } from 'next';
 import { unstable_cache as nextCache } from 'next/cache';
 import Link from 'next/link';
@@ -187,7 +188,11 @@ export default async function TweetDetailPage({
               <div className="space-x-2">
                 <Link
                   href={`/tweets/${id}/edit`}
-                  className="retro-button border-blue-500 bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600"
+                  className={cn(
+                    'retro-button px-4 py-2 text-sm font-medium',
+                    'border-[var(--accent-primary)] bg-[var(--accent-primary)]',
+                    'text-white hover:bg-[var(--accent-secondary)] dark:text-black'
+                  )}
                 >
                   수정
                 </Link>

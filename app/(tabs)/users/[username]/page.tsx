@@ -9,6 +9,7 @@ import {
   getPaginationParams,
 } from '@/lib/pagination';
 import { getUserByUsername } from '@/lib/user';
+import { cn } from '@/lib/utils';
 import { Pencil } from 'lucide-react';
 import { Metadata } from 'next';
 import { unstable_cache as nextCache } from 'next/cache';
@@ -102,14 +103,21 @@ export default async function UserProfilePage({
 
   return (
     <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
-      <h1 className="mb-6 text-2xl text-blue-600">PROFILE</h1>
+      <h1 className="mb-6 text-2xl text-[var(--accent-primary)]">PROFILE</h1>
       <div className="retro-container mb-6 p-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-medium text-blue-600">{user.username}</h1>
+          <h1 className="text-xl font-medium text-[var(--accent-primary)]">
+            {user.username}
+          </h1>
           {isOwner && (
             <Link
               href={`/users/${user.username}/edit`}
-              className="retro-button flex items-center gap-1 border-blue-500 bg-blue-500 px-4 py-2 text-sm text-white transition-colors hover:border-blue-600 hover:bg-blue-600"
+              className={cn(
+                'retro-button flex items-center gap-1 px-4 py-2 text-sm',
+                'border-[var(--accent-primary)] bg-[var(--accent-primary)]',
+                'text-white transition-colors dark:text-black',
+                'hover:border-[var(--accent-secondary)] hover:bg-[var(--accent-secondary)]'
+              )}
             >
               <Pencil className="mr-1 size-4" />
               <p>프로필 편집</p>
@@ -117,12 +125,19 @@ export default async function UserProfilePage({
           )}
         </div>
         {user.bio && <p className="mt-3 whitespace-pre-wrap">{user.bio}</p>}
-        <div className="mt-4 text-sm text-gray-500">
+        <div className="mt-4 text-sm text-[var(--text-secondary)]">
           가입일: {formatToKorDateOnly(user.created_at)}
         </div>
       </div>
 
-      <h2 className="mb-4 text-lg text-blue-600">작성한 트윗</h2>
+      <h2
+        className={cn(
+          'mb-4 text-lg',
+          'text-[var(--text-primary)] dark:text-[var(--accent-primary)]'
+        )}
+      >
+        작성한 트윗
+      </h2>
       {tweets.length > 0 ? (
         <>
           <TweetList tweets={tweets} />
