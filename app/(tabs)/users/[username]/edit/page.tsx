@@ -4,6 +4,7 @@ import BackButton from '@/components/ui/BackButton';
 import PasswordChangeForm from '@/components/ui/profile/PasswordChangeForm';
 import ProfileInfoForm from '@/components/ui/profile/ProfileInfoForm';
 import UserWithdrawalButton from '@/components/ui/profile/UserWithdrawalButton';
+import { cn } from '@/lib/utils';
 import { User } from '@prisma/client';
 import Link from 'next/link';
 import { use, useEffect, useOptimistic, useState } from 'react';
@@ -108,7 +109,14 @@ export default function ProfileEditPage({ params }: IProfileEditPageProps) {
       <BackButton
         fallbackPath={`/users/${encodeURIComponent(decodedUsername)}`}
       />
-      <h1 className="mb-6 text-xl font-medium text-blue-600">프로필 편집</h1>
+      <h1
+        className={cn(
+          'mb-6 text-xl font-medium',
+          'text-[var(--text-primary)] dark:text-[var(--accent-primary)]'
+        )}
+      >
+        프로필 편집
+      </h1>
       {optimisticProfile && (
         <>
           <ProfileInfoForm

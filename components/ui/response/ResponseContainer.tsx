@@ -1,5 +1,6 @@
 'use client';
 
+import { cn } from '@/lib/utils';
 import { ResponseType } from '@/types/response';
 import { useCallback, useOptimistic } from 'react';
 import ResponseForm from './ResponseForm';
@@ -102,7 +103,12 @@ export default function ResponseContainer({
 
   return (
     <div className="mt-6">
-      <h3 className="mb-4 text-base font-medium text-blue-600">
+      <h3
+        className={cn(
+          'mb-4 text-base font-medium',
+          'text-[var(--text-primary)] dark:text-[var(--accent-primary)]'
+        )}
+      >
         댓글 {optimisticResponses.length}개
       </h3>
 

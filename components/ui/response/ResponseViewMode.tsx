@@ -2,6 +2,7 @@
 
 import { deleteResponse } from '@/app/(tabs)/tweets/[id]/actions';
 import { formatToKorDate } from '@/lib/format';
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { startTransition, useState } from 'react';
 import { toast } from 'sonner';
@@ -69,7 +70,9 @@ export default function ResponseViewMode({
             {username}
           </Link>
           {isPending && (
-            <span className="text-xs text-blue-500">(게시 중...)</span>
+            <span className="text-xs text-[var(--accent-primary)]">
+              (게시 중...)
+            </span>
           )}
         </div>
 
@@ -77,14 +80,21 @@ export default function ResponseViewMode({
           <div className="space-x-2">
             <button
               onClick={onEditClickAction}
-              className="text-sm text-blue-500 hover:text-blue-700"
+              className={cn(
+                'text-sm transition-colors',
+                'text-[var(--accent-primary)] hover:text-[var(--accent-secondary)]'
+              )}
             >
               수정
             </button>
             <button
               onClick={handleDelete}
               disabled={isDeleting}
-              className="text-sm text-red-500 hover:text-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+              className={cn(
+                'text-sm transition-colors',
+                'text-[var(--error)] hover:text-[var(--error)]',
+                'disabled:cursor-not-allowed disabled:opacity-50'
+              )}
             >
               {isDeleting ? '삭제 중...' : '삭제'}
             </button>

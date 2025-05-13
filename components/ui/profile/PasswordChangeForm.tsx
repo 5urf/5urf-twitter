@@ -70,7 +70,7 @@ export default function PasswordChangeForm() {
             text="비밀번호 변경"
             loadingText="변경 중..."
             type="submit"
-            className="w-auto border-blue-500 bg-blue-500 px-4 py-2 text-white hover:border-blue-600 hover:bg-blue-600"
+            className="w-auto border-[var(--accent-primary)] bg-[var(--accent-primary)] px-4 py-2 hover:border-[var(--accent-secondary)] hover:bg-[var(--accent-secondary)]"
           />
         </div>
       </form>

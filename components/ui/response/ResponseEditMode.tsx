@@ -2,6 +2,7 @@
 
 import { updateResponse } from '@/app/(tabs)/tweets/[id]/actions';
 import { TWEET_VALIDATION } from '@/lib/constants';
+import { cn } from '@/lib/utils';
 import { useActionState, useEffect, useState, useTransition } from 'react';
 import { toast } from 'sonner';
 import FormButton from '../form/FormButton';
@@ -61,9 +62,14 @@ export default function ResponseEditMode({
   return (
     <div className="p-4">
       <div className="mb-2 flex justify-between">
-        <span className="font-medium">댓글 수정</span>
+        <span className="font-medium text-[var(--text-primary)]">
+          댓글 수정
+        </span>
         <div
-          className={`text-sm ${isOverLimit ? 'text-red-500' : 'text-gray-500'}`}
+          className={cn(
+            'text-sm',
+            isOverLimit ? 'text-[var(--error)]' : 'text-[var(--text-secondary)]'
+          )}
         >
           {`${charCount}/${TWEET_VALIDATION.MAX_LENGTH}`}
         </div>
@@ -73,7 +79,7 @@ export default function ResponseEditMode({
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          className="retro-input min-h-20 w-full border-gray-300 bg-white p-3 text-base placeholder:text-gray-400 focus:border-blue-400"
+          className="retro-input min-h-20 w-full p-3 text-base placeholder:text-[var(--text-secondary)] focus:border-[var(--accent-primary)]"
           rows={3}
           maxLength={TWEET_VALIDATION.MAX_LENGTH}
           disabled={isPending}
@@ -85,7 +91,11 @@ export default function ResponseEditMode({
           <button
             type="button"
             onClick={onCancelAction}
-            className="retro-button border-gray-300 bg-gray-100 px-3 py-1 text-sm hover:bg-gray-200"
+            className={cn(
+              'retro-button px-3 py-1 text-sm',
+              'border-[var(--border-primary)] bg-[var(--bg-tertiary)]',
+              'hover:bg-[var(--hover-light)]'
+            )}
             disabled={isPending}
           >
             취소
@@ -93,9 +103,12 @@ export default function ResponseEditMode({
           <FormButton
             text="저장"
             loadingText="저장 중..."
-            type="submit"
+            className={cn(
+              'w-auto px-3 py-1 text-sm',
+              'border-[var(--accent-primary)] bg-[var(--accent-primary)]',
+              'text-black hover:border-[var(--accent-secondary)] hover:bg-[var(--accent-secondary)]'
+            )}
             disabled={isInvalid}
-            className="w-auto border-blue-500 bg-blue-500 px-3 py-1 text-sm text-white hover:border-blue-600 hover:bg-blue-600"
           />
         </div>
       </form>

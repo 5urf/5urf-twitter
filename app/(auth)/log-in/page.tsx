@@ -20,8 +20,10 @@ export default function LoginPage() {
     <main className="flex min-h-screen items-center justify-center px-4">
       <section className="retro-container w-full max-w-md">
         <figure className="mb-8 flex flex-col items-center justify-center gap-2">
-          <Terminal className="size-14 text-blue-600" />
-          <h2 className="text-xl text-blue-600">Log In</h2>
+          <Terminal className="size-14 text-[var(--text-primary)] dark:text-[var(--accent-primary)]" />
+          <h2 className="text-xl text-[var(--text-primary)] dark:text-[var(--accent-primary)]">
+            Log In
+          </h2>
         </figure>
         <form onSubmit={onSubmit} className="space-y-4">
           <FormInput
@@ -45,7 +47,7 @@ export default function LoginPage() {
         </form>
         <Link
           href="/create-account"
-          className="retro-button mt-4 flex justify-center border-gray-300 bg-gray-100 py-3 text-sm text-gray-800 hover:bg-gray-200"
+          className="retro-button mt-4 flex justify-center border-[var(--border-primary)] bg-[var(--bg-tertiary)] py-3 text-sm text-[var(--text-primary)] hover:bg-[var(--hover-light)]"
         >
           회원가입
         </Link>
