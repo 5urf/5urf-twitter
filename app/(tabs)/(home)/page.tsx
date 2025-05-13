@@ -70,7 +70,9 @@ export default async function HomePage({ searchParams }: IHomePagePageProps) {
 
   return (
     <main className="mx-auto max-w-lg px-4 pb-10 pt-10">
-      <h1 className="mb-10 text-2xl tracking-wide text-blue-600">HOME</h1>
+      <h1 className="mb-10 text-2xl tracking-wide text-[var(--accent-primary)]">
+        HOME
+      </h1>
       <AddTweet />
       <TweetList tweets={tweets} />
       <Pagination currentPage={page} totalPages={totalPages} />

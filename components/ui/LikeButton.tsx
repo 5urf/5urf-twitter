@@ -47,13 +47,17 @@ export default function LikeButton({
       onClick={handleLike}
       disabled={isPending}
       className={cn(
-        'retro-button flex items-center border-transparent bg-transparent px-2 py-1 text-gray-500 transition-colors',
-        state.isLiked ? 'text-red-500' : 'hover:text-red-500',
+        'retro-button flex items-center border-transparent bg-transparent px-2 py-1 transition-colors',
+        'text-[var(--text-secondary)]',
+        state.isLiked ? 'text-[var(--error)]' : 'hover:text-[var(--error)]',
         isPending && 'cursor-not-allowed opacity-70'
       )}
     >
       <Heart
-        className={cn('size-5', state.isLiked && 'fill-red-500 text-red-500')}
+        className={cn(
+          'size-5',
+          state.isLiked && 'fill-[var(--error)] text-[var(--error)]'
+        )}
       />
       <span className="ml-1">{state.likeCount}</span>
     </button>

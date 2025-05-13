@@ -45,7 +45,7 @@ export default function DeleteTweetButton({
     <button
       onClick={handleDelete}
       disabled={isDeleting}
-      className="retro-button border-red-500 bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50"
+      className="retro-button border-[var(--error)] bg-[var(--error)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--error)] disabled:cursor-not-allowed disabled:opacity-50"
     >
       {isDeleting ? '삭제 중...' : '삭제'}
     </button>

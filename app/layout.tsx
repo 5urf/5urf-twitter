@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Press_Start_2P, Space_Mono } from 'next/font/google';
 import { Toaster } from 'sonner';
+import { getTheme } from './actions/theme';
 import './globals.css';
 
 const pixelFont = Press_Start_2P({
@@ -53,16 +54,20 @@ export const metadata: Metadata = {
     siteName: '5urf Twitter',
   },
 };
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const theme = await getTheme();
   return (
-    <html lang="ko" className={`${pixelFont.variable} ${monoFont.variable}`}>
+    <html
+      lang="ko"
+      className={`${pixelFont.variable} ${monoFont.variable} ${theme}`}
+    >
       <body
         suppressHydrationWarning
-        className="mx-auto max-w-screen-sm bg-gray-100 font-mono"
+        className="mx-auto max-w-screen-sm font-mono"
       >
         <Toaster position="bottom-center" offset="80px" richColors />
         {children}

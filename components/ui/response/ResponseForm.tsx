@@ -69,7 +69,7 @@ export default function ResponseForm({
             name="content"
             value={responseText}
             onChange={(e) => setResponseText(e.target.value)}
-            className="retro-input min-h-20 w-full border-gray-300 bg-white p-3 text-base placeholder:text-gray-400 focus:border-blue-400"
+            className="retro-input min-h-20 w-full p-3 text-base placeholder:text-[var(--text-secondary)] focus:border-[var(--accent-primary)]"
             rows={3}
             placeholder="댓글을 작성해주세요."
             maxLength={TWEET_VALIDATION.MAX_LENGTH}
@@ -89,9 +89,8 @@ export default function ResponseForm({
           <FormButton
             text="댓글 달기"
             loadingText="게시 중..."
-            type="submit"
-            disabled={invaild}
-            className="w-auto border-blue-500 bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600"
+            className="w-auto px-4 py-2 text-sm font-medium"
+            disabled={invaild || isPending}
           />
         </div>
       </form>
