@@ -108,6 +108,7 @@ export default function ResponseEditMode({
               'border-[var(--accent-primary)] bg-[var(--accent-primary)]',
               'text-black hover:border-[var(--accent-secondary)] hover:bg-[var(--accent-secondary)]'
             )}
+            disabled={isInvalid}
           />
         </div>
       </form>

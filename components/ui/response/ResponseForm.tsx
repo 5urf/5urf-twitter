@@ -90,6 +90,7 @@ export default function ResponseForm({
             text="댓글 달기"
             loadingText="게시 중..."
             className="w-auto px-4 py-2 text-sm font-medium"
+            disabled={invaild || isPending}
           />
         </div>
       </form>
