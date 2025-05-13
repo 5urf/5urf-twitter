@@ -13,6 +13,8 @@ export default function SearchForm({ initialQuery = '' }: ISearchFormProps) {
   const [query, setQuery] = useState(initialQuery);
   const router = useRouter();
 
+  const disabled = !query.trim();
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!query.trim()) return;
@@ -33,11 +35,12 @@ export default function SearchForm({ initialQuery = '' }: ISearchFormProps) {
         <button
           type="submit"
           className={cn(
-            'absolute right-0 top-0 h-full cursor-pointer px-4 transition-colors',
-            'text-[var(--text-secondary)] hover:text-[var(--accent-primary)]',
-            'disabled:cursor-not-allowed'
+            'absolute right-0 top-0 h-full px-4 transition-colors',
+            disabled
+              ? 'cursor-not-allowed text-[var(--text-tertiary)]'
+              : 'cursor-pointer text-[var(--accent-primary)]'
           )}
-          disabled={!query.trim()}
+          disabled={disabled}
         >
           <Search className="size-5" />
         </button>
