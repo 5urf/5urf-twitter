@@ -26,6 +26,8 @@
     --hover-bg: #f3f4f6; /* hover:bg-gray-100 */
     --hover-light: #f9fafb; /* hover:bg-gray-50 */
 
+    --button-text-on-accent: #ffffff;
+
     --shadow-retro: 0 4px 0 #d1d5db;
   }
 
@@ -51,6 +53,8 @@
 
     --hover-bg: #1f1f1f;
     --hover-light: #171717;
+
+    --button-text-on-accent: #000000;
 
     --shadow-retro: 0 0 10px rgba(134, 239, 172, 0.1);
   }

@@ -110,7 +110,7 @@ export default function ProfileInfoForm({
             id="bio"
             name="bio"
             rows={4}
-            className="retro-input w-full border-gray-300 p-3 focus:border-blue-400"
+            className="retro-input w-full p-3 focus:border-[var(--accent-primary)]"
             placeholder="자기소개를 입력해주세요."
             defaultValue={profile.bio || ''}
           />
@@ -120,7 +120,7 @@ export default function ProfileInfoForm({
             text="정보 변경"
             loadingText="변경 중..."
             type="submit"
-            className="w-auto border-blue-500 bg-blue-500 px-4 py-2 text-white hover:border-blue-600 hover:bg-blue-600"
+            className="w-auto border-[var(--accent-primary)] bg-[var(--accent-primary)] px-4 py-2 hover:border-[var(--accent-secondary)] hover:bg-[var(--accent-secondary)]"
           />
         </div>
       </form>

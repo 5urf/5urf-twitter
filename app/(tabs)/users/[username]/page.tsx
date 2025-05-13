@@ -115,7 +115,7 @@ export default async function UserProfilePage({
               className={cn(
                 'retro-button flex items-center gap-1 px-4 py-2 text-sm',
                 'border-[var(--accent-primary)] bg-[var(--accent-primary)]',
-                'text-white transition-colors dark:text-black',
+                'text-[var(--button-text-on-accent)] transition-colors',
                 'hover:border-[var(--accent-secondary)] hover:bg-[var(--accent-secondary)]'
               )}
             >
