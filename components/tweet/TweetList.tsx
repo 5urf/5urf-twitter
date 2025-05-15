@@ -3,6 +3,7 @@ import { formatToKorDate } from '@/lib/format';
 import { cn } from '@/lib/utils';
 import { Heart, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
+import EmptyState from '../layout/EmptyState';
 
 interface ITweetListProps {
   tweets: Tweets;
@@ -16,9 +17,7 @@ const TweetList = ({
   emptyMessage = 'tweet이 없습니다',
 }: ITweetListProps) => {
   if (tweets.length === 0) {
-    return (
-      <p className="text-center text-[var(--text-secondary)]">{emptyMessage}</p>
-    );
+    return <EmptyState title={emptyMessage} />;
   }
 
   return (

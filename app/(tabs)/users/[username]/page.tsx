@@ -1,4 +1,5 @@
 import Pagination from '@/components/common/Pagination';
+import EmptyState from '@/components/layout/EmptyState';
 import PageHeader from '@/components/layout/PageHeader';
 import TweetList from '@/components/tweet/TweetList';
 import { isCurrentUser } from '@/lib/auth';
@@ -149,9 +150,7 @@ export default async function UserProfilePage({
           />
         </>
       ) : (
-        <div className="retro-container p-6 text-center">
-          <p className="text-gray-600">작성한 트윗이 없습니다.</p>
-        </div>
+        <EmptyState title="작성한 트윗이 없습니다." />
       )}
     </main>
   );
