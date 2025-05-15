@@ -1,12 +1,12 @@
 'use client';
 
 import { searchTweets } from '@/app/(tabs)/search/actions';
-import { cn } from '@/lib/utils';
 import { Tweet } from '@prisma/client';
 import { useEffect, useState } from 'react';
 import Pagination from '../common/Pagination';
 import EmptyState from '../layout/EmptyState';
 import TweetList from '../tweet/TweetList';
+import SearchLoadingSkeleton from './SearchLoadingSkeleton';
 
 type SearchResultTweet = Tweet & {
   user: {
@@ -67,17 +67,7 @@ export default function SearchResults({
   }
 
   if (isLoading) {
-    return (
-      <div className="mt-8 flex flex-col items-center justify-center">
-        <div
-          className={cn(
-            'h-10 w-10 animate-spin rounded-full border-4 border-t-transparent',
-            'border-[var(--text-primary)] dark:border-[var(--accent-primary)]'
-          )}
-        />
-        <p className="mt-2 text-[var(--text-secondary)]">검색 중...</p>
-      </div>
-    );
+    return <SearchLoadingSkeleton />;
   }
 
   if (results.tweets.length === 0) {

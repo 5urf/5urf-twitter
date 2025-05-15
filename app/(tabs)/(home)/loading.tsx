@@ -1,4 +1,5 @@
 import PageHeader from '@/components/layout/PageHeader';
+import Skeleton from '@/components/layout/Skeleton';
 
 export default function LoadingHome() {
   return (
@@ -7,21 +8,21 @@ export default function LoadingHome() {
       <div className="retro-container mb-6">
         <div className="min-h-20 w-full border-2 border-[var(--border-primary)] bg-[var(--bg-tertiary)] p-3" />
         <div className="mt-3 flex justify-end">
-          <div className="h-10 w-20 animate-pulse bg-[var(--border-secondary)]" />
+          <Skeleton className="h-10 w-20" />
         </div>
       </div>
       <div className="space-y-4">
         {[...Array(3)].map((_, index) => (
           <div key={index} className="retro-container p-4">
-            <div className="mb-2 h-5 w-32 animate-pulse bg-[var(--border-secondary)]" />
+            <Skeleton className="mb-2 h-5 w-32" />
             <div className="space-y-2">
-              <div className="h-4 w-full animate-pulse bg-[var(--border-secondary)]" />
-              <div className="h-4 w-full animate-pulse bg-[var(--border-secondary)]" />
-              <div className="h-4 w-3/4 animate-pulse bg-[var(--border-secondary)]" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-3/4" />
             </div>
             <div className="mt-2 flex items-center justify-between">
-              <div className="h-4 w-24 animate-pulse bg-[var(--border-secondary)]" />
-              <div className="h-4 w-10 animate-pulse bg-[var(--border-secondary)]" />
+              <Skeleton className="h-4 w-24" />
+              <Skeleton className="h-4 w-10" />
             </div>
           </div>
         ))}
