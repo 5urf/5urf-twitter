@@ -1,7 +1,7 @@
-import BackButton from '@/components/ui/BackButton';
-import LikeButton from '@/components/ui/LikeButton';
-import ResponseContainer from '@/components/ui/response/ResponseContainer';
-import DeleteTweetButton from '@/components/ui/tweet/DeleteTweetButton';
+import BackButton from '@/components/common/BackButton';
+import LikeButton from '@/components/common/LikeButton';
+import ResponseContainer from '@/components/response/ResponseContainer';
+import DeleteTweetButton from '@/components/tweet/DeleteTweetButton';
 import { isCurrentUser } from '@/lib/auth';
 import db from '@/lib/db';
 import { formatToKorDate } from '@/lib/format';

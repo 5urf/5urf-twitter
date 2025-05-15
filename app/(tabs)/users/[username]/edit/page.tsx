@@ -1,9 +1,9 @@
 'use client';
 
-import BackButton from '@/components/ui/BackButton';
-import PasswordChangeForm from '@/components/ui/profile/PasswordChangeForm';
-import ProfileInfoForm from '@/components/ui/profile/ProfileInfoForm';
-import UserWithdrawalButton from '@/components/ui/profile/UserWithdrawalButton';
+import BackButton from '@/components/common/BackButton';
+import PasswordChangeForm from '@/components/profile/PasswordChangeForm';
+import ProfileInfoForm from '@/components/profile/ProfileInfoForm';
+import UserWithdrawalButton from '@/components/profile/UserWithdrawalButton';
 import { cn } from '@/lib/utils';
 import { User } from '@prisma/client';
 import Link from 'next/link';

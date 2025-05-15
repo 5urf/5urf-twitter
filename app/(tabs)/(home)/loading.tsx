@@ -1,9 +1,9 @@
+import PageHeader from '@/components/layout/PageHeader';
+
 export default function LoadingHome() {
   return (
     <main className="mx-auto max-w-lg px-4 pb-10 pt-10">
-      <h1 className="mb-10 text-2xl text-[var(--text-primary)] dark:text-[var(--accent-primary)]">
-        HOME
-      </h1>
+      <PageHeader title="HOME" />
       <div className="retro-container mb-6">
         <div className="min-h-20 w-full border-2 border-[var(--border-primary)] bg-[var(--bg-tertiary)] p-3" />
         <div className="mt-3 flex justify-end">

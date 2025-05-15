@@ -1,11 +1,11 @@
 'use client';
 
 import { updatePassword } from '@/app/(tabs)/users/[username]/edit/actions';
-import FormButton from '@/components/ui/form/FormButton';
-import FormInput from '@/components/ui/form/FormInput';
 import { ACCOUNT_VALIDATION } from '@/lib/constants';
 import { startTransition, useActionState, useEffect, useRef } from 'react';
 import { toast } from 'sonner';
+import FormButton from '../form/FormButton';
+import FormInput from '../form/FormInput';
 
 export default function PasswordChangeForm() {
   const [state, action] = useActionState(updatePassword, {});

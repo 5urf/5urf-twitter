@@ -1,11 +1,11 @@
 'use client';
 
 import { searchTweets } from '@/app/(tabs)/search/actions';
-import Pagination from '@/components/ui/Pagination';
-import TweetList from '@/components/ui/TweetList';
 import { cn } from '@/lib/utils';
 import { Tweet } from '@prisma/client';
 import { useEffect, useState } from 'react';
+import Pagination from '../common/Pagination';
+import TweetList from '../tweet/TweetList';
 
 type SearchResultTweet = Tweet & {
   user: {

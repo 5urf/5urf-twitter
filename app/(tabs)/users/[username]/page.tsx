@@ -1,5 +1,6 @@
-import Pagination from '@/components/ui/Pagination';
-import TweetList from '@/components/ui/TweetList';
+import Pagination from '@/components/common/Pagination';
+import PageHeader from '@/components/layout/PageHeader';
+import TweetList from '@/components/tweet/TweetList';
 import { isCurrentUser } from '@/lib/auth';
 import db from '@/lib/db';
 import { formatToKorDateOnly } from '@/lib/format';
@@ -103,7 +104,7 @@ export default async function UserProfilePage({
 
   return (
     <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
-      <h1 className="mb-6 text-2xl text-[var(--accent-primary)]">PROFILE</h1>
+      <PageHeader title="PROFILE" />
       <div className="retro-container mb-6 p-6">
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-medium text-[var(--accent-primary)]">

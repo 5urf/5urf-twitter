@@ -1,4 +1,4 @@
-import TabBar from '@/components/ui/tabbar/TabBar';
+import TabBar from '@/components/navigation/tabbar/TabBar';
 import { getCurrentUsername } from '@/lib/user';
 import React from 'react';
 

@@ -1,6 +1,6 @@
 'use client';
-import FormButton from '@/components/ui/form/FormButton';
-import FormInput from '@/components/ui/form/FormInput';
+import FormButton from '@/components/form/FormButton';
+import FormInput from '@/components/form/FormInput';
 import { ACCOUNT_VALIDATION } from '@/lib/constants';
 import { Terminal } from 'lucide-react';
 import Link from 'next/link';

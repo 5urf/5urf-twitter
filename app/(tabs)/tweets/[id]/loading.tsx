@@ -1,4 +1,4 @@
-import BackButton from '@/components/ui/BackButton';
+import BackButton from '@/components/common/BackButton';
 
 export default function LoadingTweetDetail() {
   return (

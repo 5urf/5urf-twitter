@@ -1,13 +1,13 @@
 'use client';
 
 import { updateTweet } from '@/app/(tabs)/tweets/[id]/edit/actions';
-import FormButton from '@/components/ui/form/FormButton';
 import { TWEET_VALIDATION } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { Tweet } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { startTransition, useActionState, useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import FormButton from '../form/FormButton';
 
 interface IEditTweetFormProps {
   tweet: Tweet & {

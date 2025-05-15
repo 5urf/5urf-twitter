@@ -1,5 +1,5 @@
-import BackButton from '@/components/ui/BackButton';
-import EditTweetForm from '@/components/ui/tweet/EditTweetForm';
+import BackButton from '@/components/common/BackButton';
+import EditTweetForm from '@/components/tweet/EditTweetForm';
 import { isCurrentUser } from '@/lib/auth';
 import db from '@/lib/db';
 import { Metadata } from 'next';

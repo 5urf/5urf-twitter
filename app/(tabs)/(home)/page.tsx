@@ -1,6 +1,7 @@
-import Pagination from '@/components/ui/Pagination';
-import AddTweet from '@/components/ui/tweet/AddTweet';
-import TweetList from '@/components/ui/TweetList';
+import Pagination from '@/components/common/Pagination';
+import PageHeader from '@/components/layout/PageHeader';
+import AddTweet from '@/components/tweet/AddTweet';
+import TweetList from '@/components/tweet/TweetList';
 import db from '@/lib/db';
 import {
   DEFAULT_PAGE_SIZE,
@@ -70,9 +71,7 @@ export default async function HomePage({ searchParams }: IHomePagePageProps) {
 
   return (
     <main className="mx-auto max-w-lg px-4 pb-10 pt-10">
-      <h1 className="mb-10 text-2xl tracking-wide text-[var(--accent-primary)]">
-        HOME
-      </h1>
+      <PageHeader title="HOME" />
       <AddTweet />
       <TweetList tweets={tweets} />
       <Pagination currentPage={page} totalPages={totalPages} />
