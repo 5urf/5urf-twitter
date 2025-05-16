@@ -28,9 +28,10 @@ export default function UserWithdrawalButton() {
         <span className="text-base">회원 탈퇴</span>
         <UserX className="size-5" />
       </button>
-      {showModal && (
-        <WithdrawalConfirmModal onCloseAction={handleCloseModalAction} />
-      )}
+      <WithdrawalConfirmModal
+        isOpen={showModal}
+        onCloseAction={handleCloseModalAction}
+      />
     </>
   );
 }
