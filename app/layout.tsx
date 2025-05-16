@@ -71,6 +71,7 @@ export default async function RootLayout({
       >
         <Toaster position="bottom-center" offset="80px" richColors />
         {children}
+        <div id="portal-root" />
       </body>
     </html>
   );

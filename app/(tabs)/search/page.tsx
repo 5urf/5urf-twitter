@@ -1,5 +1,6 @@
-import SearchForm from '@/components/ui/search/SearchForm';
-import SearchResults from '@/components/ui/search/SearchResults';
+import PageHeader from '@/components/layout/PageHeader';
+import SearchForm from '@/components/search/SearchForm';
+import SearchResults from '@/components/search/SearchResults';
 import { getPageFromSearchParams } from '@/lib/pagination';
 import { Metadata } from 'next';
 import { searchTweets } from './actions';
@@ -29,7 +30,7 @@ export default async function SearchPage({ searchParams }: ISearchPageProps) {
 
   return (
     <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
-      <h1 className="mb-6 text-2xl text-[var(--accent-primary)]">SEARCH</h1>
+      <PageHeader title="SEARCH" />
       <SearchForm initialQuery={query} />
       <SearchResults
         hasSearched={hasSearched}

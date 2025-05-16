@@ -1,6 +1,7 @@
 import { getTheme } from '@/app/actions/theme';
-import DarkModeToggle from '@/components/ui/settings/DarkModeToggle';
-import LogoutButton from '@/components/ui/settings/LogoutButton';
+import PageHeader from '@/components/layout/PageHeader';
+import DarkModeToggle from '@/components/settings/DarkModeToggle';
+import LogoutButton from '@/components/settings/LogoutButton';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export default async function SettingsPage() {
   const theme = await getTheme();
   return (
     <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
-      <h1 className="mb-6 text-2xl text-[var(--accent-primary)]">SETTINGS</h1>
+      <PageHeader title="SETTINGS" />
       <div className="space-y-4">
         <div className="retro-container">
           <DarkModeToggle initialTheme={theme} />

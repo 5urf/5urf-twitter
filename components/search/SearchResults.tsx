@@ -1,11 +1,12 @@
 'use client';
 
 import { searchTweets } from '@/app/(tabs)/search/actions';
-import Pagination from '@/components/ui/Pagination';
-import TweetList from '@/components/ui/TweetList';
-import { cn } from '@/lib/utils';
 import { Tweet } from '@prisma/client';
 import { useEffect, useState } from 'react';
+import Pagination from '../common/Pagination';
+import EmptyState from '../layout/EmptyState';
+import TweetList from '../tweet/TweetList';
+import SearchLoadingSkeleton from './SearchLoadingSkeleton';
 
 type SearchResultTweet = Tweet & {
   user: {
@@ -57,37 +58,25 @@ export default function SearchResults({
 
   if (!hasSearched) {
     return (
-      <div className="retro-container mt-8 p-6 text-center">
-        <p className="text-[var(--text-secondary)]">검색어를 입력하세요.</p>
-        <p className="mt-2 text-sm text-[var(--text-tertiary)]">
-          트윗 내용과 사용자 이름으로 검색할 수 있습니다.
-        </p>
-      </div>
+      <EmptyState
+        title="검색어를 입력하세요."
+        description="트윗 내용과 사용자 이름으로 검색할 수 있습니다."
+        containerClassName="mt-8"
+      />
     );
   }
 
   if (isLoading) {
-    return (
-      <div className="mt-8 flex flex-col items-center justify-center">
-        <div
-          className={cn(
-            'h-10 w-10 animate-spin rounded-full border-4 border-t-transparent',
-            'border-[var(--text-primary)] dark:border-[var(--accent-primary)]'
-          )}
-        />
-        <p className="mt-2 text-[var(--text-secondary)]">검색 중...</p>
-      </div>
-    );
+    return <SearchLoadingSkeleton />;
   }
 
   if (results.tweets.length === 0) {
     return (
-      <div className="retro-container mt-8 p-6 text-center">
-        <p className="text-[var(--text-secondary)]">검색 결과가 없습니다.</p>
-        <p className="mt-2 text-sm text-[var(--text-tertiary)]">
-          다른 검색어를 입력해 보세요.
-        </p>
-      </div>
+      <EmptyState
+        title="검색 결과가 없습니다."
+        description="다른 검색어를 입력해 보세요."
+        containerClassName="mt-8"
+      />
     );
   }
 

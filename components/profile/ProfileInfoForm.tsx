@@ -1,12 +1,12 @@
 'use client';
 
 import { updateProfile } from '@/app/(tabs)/users/[username]/edit/actions';
-import FormButton from '@/components/ui/form/FormButton';
-import FormInput from '@/components/ui/form/FormInput';
 import { ACCOUNT_VALIDATION } from '@/lib/constants';
 import { useRouter } from 'next/navigation';
 import { startTransition, useActionState, useEffect, useRef } from 'react';
 import { toast } from 'sonner';
+import FormButton from '../form/FormButton';
+import FormInput from '../form/FormInput';
 
 interface IUserProfile {
   username: string;

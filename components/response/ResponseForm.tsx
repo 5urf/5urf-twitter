@@ -1,11 +1,11 @@
 'use client';
 
 import { addResponse } from '@/app/(tabs)/tweets/[id]/actions';
-import FormButton from '@/components/ui/form/FormButton';
 import { TWEET_VALIDATION } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { useActionState, useEffect, useState, useTransition } from 'react';
 import { toast } from 'sonner';
+import FormButton from '../form/FormButton';
 
 interface IResponseFormProps {
   tweetId: number;

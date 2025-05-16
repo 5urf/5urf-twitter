@@ -1,12 +1,13 @@
 'use client';
 
-import BackButton from '@/components/ui/BackButton';
-import PasswordChangeForm from '@/components/ui/profile/PasswordChangeForm';
-import ProfileInfoForm from '@/components/ui/profile/ProfileInfoForm';
-import UserWithdrawalButton from '@/components/ui/profile/UserWithdrawalButton';
+import BackButton from '@/components/common/BackButton';
+import PasswordChangeForm from '@/components/profile/PasswordChangeForm';
+import ProfileEditError from '@/components/profile/ProfileEditError';
+import ProfileEditSkeleton from '@/components/profile/ProfileEditSkeleton';
+import ProfileInfoForm from '@/components/profile/ProfileInfoForm';
+import UserWithdrawalButton from '@/components/profile/UserWithdrawalButton';
 import { cn } from '@/lib/utils';
 import { User } from '@prisma/client';
-import Link from 'next/link';
 import { use, useEffect, useOptimistic, useState } from 'react';
 import { toast } from 'sonner';
 
@@ -58,50 +59,11 @@ export default function ProfileEditPage({ params }: IProfileEditPageProps) {
   }, [decodedUsername]);
 
   if (isLoading) {
-    return (
-      <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
-        <BackButton />
-        <div className="mb-6 h-6 w-40 animate-pulse bg-blue-200" />
-        <div className="retro-container mb-6">
-          <div className="mb-4 h-6 w-32 animate-pulse bg-gray-200" />
-          <div className="space-y-4">
-            <div className="h-12 animate-pulse bg-gray-200" />
-            <div className="h-12 animate-pulse bg-gray-200" />
-            <div className="h-24 animate-pulse bg-gray-200" />
-            <div className="flex justify-end">
-              <div className="h-10 w-32 animate-pulse bg-blue-200" />
-            </div>
-          </div>
-        </div>
-        <div className="retro-container">
-          <div className="mb-4 h-6 w-36 animate-pulse bg-gray-200" />
-          <div className="space-y-4">
-            <div className="h-12 animate-pulse bg-gray-200" />
-            <div className="h-12 animate-pulse bg-gray-200" />
-            <div className="h-12 animate-pulse bg-gray-200" />
-            <div className="flex justify-end">
-              <div className="h-10 w-32 animate-pulse bg-blue-200" />
-            </div>
-          </div>
-        </div>
-      </main>
-    );
+    return <ProfileEditSkeleton />;
   }
 
   if (!profile) {
-    return (
-      <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
-        <div className="retro-container p-6 text-center">
-          <p className="text-red-600">프로필 정보를 불러오는데 실패했습니다.</p>
-          <Link
-            href={`/users/${username}`}
-            className="mt-4 inline-block text-blue-600 hover:underline"
-          >
-            프로필로 돌아가기
-          </Link>
-        </div>
-      </main>
-    );
+    return <ProfileEditError username={username} />;
   }
 
   return (

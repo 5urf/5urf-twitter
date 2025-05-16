@@ -1,4 +1,5 @@
-import BackButton from '@/components/ui/BackButton';
+import BackButton from '@/components/common/BackButton';
+import Skeleton from '@/components/layout/Skeleton';
 
 export default function LoadingTweetDetail() {
   return (
@@ -6,19 +7,19 @@ export default function LoadingTweetDetail() {
       <BackButton />
       <div className="retro-container overflow-hidden p-0">
         <div className="border-b-2 border-[var(--border-primary)] p-5">
-          <div className="h-5 w-32 animate-pulse bg-[var(--border-secondary)]" />
+          <Skeleton className="h-5 w-32" />
         </div>
         <div className="border-b-2 border-[var(--border-primary)] p-5">
           <div className="space-y-2">
-            <div className="h-4 w-full animate-pulse bg-[var(--border-secondary)]" />
-            <div className="h-4 w-full animate-pulse bg-[var(--border-secondary)]" />
-            <div className="h-4 w-3/4 animate-pulse bg-[var(--border-secondary)]" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-3/4" />
           </div>
-          <div className="mt-4 h-4 w-40 animate-pulse bg-[var(--border-secondary)]" />
+          <Skeleton className="mt-4 h-4 w-40" />
         </div>
         <div className="p-4">
           <div className="flex items-center">
-            <div className="h-8 w-16 animate-pulse bg-[var(--border-secondary)]" />
+            <Skeleton className="h-8 w-16" />
           </div>
         </div>
       </div>
@@ -30,19 +31,19 @@ export default function LoadingTweetDetail() {
               key={index}
               className="border-b-2 border-[var(--border-primary)] p-4"
             >
-              <div className="mb-2 h-5 w-24 animate-pulse bg-[var(--border-secondary)]" />
+              <Skeleton className="mb-2 h-5 w-24" />
               <div className="space-y-2">
-                <div className="h-4 w-full animate-pulse bg-[var(--border-secondary)]" />
-                <div className="h-4 w-3/4 animate-pulse bg-[var(--border-secondary)]" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-3/4" />
               </div>
-              <div className="mt-2 h-4 w-32 animate-pulse bg-[var(--border-secondary)]" />
+              <Skeleton className="mt-2 h-4 w-32" />
             </div>
           ))}
         </div>
         <div className="retro-container mt-4">
           <div className="h-24 w-full border-2 border-[var(--border-primary)] bg-[var(--bg-tertiary)]" />
           <div className="mt-3 flex justify-end">
-            <div className="h-10 w-24 animate-pulse bg-[var(--border-secondary)]" />
+            <Skeleton className="h-10 w-24" />
           </div>
         </div>
       </div>
