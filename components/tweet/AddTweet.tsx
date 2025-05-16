@@ -1,10 +1,10 @@
 'use client';
 
 import { addTweet } from '@/app/(tabs)/(home)/actions';
-import FormButton from '@/components/ui/form/FormButton';
 import { TWEET_VALIDATION } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { startTransition, useActionState, useState } from 'react';
+import FormButton from '../form/FormButton';
 
 export default function AddTweet() {
   const [tweetText, setTweetText] = useState('');
