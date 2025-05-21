@@ -1,7 +1,22 @@
 import type { Metadata } from 'next';
+import { Press_Start_2P, Space_Mono } from 'next/font/google';
 import { Toaster } from 'sonner';
 import { getTheme } from './actions/theme';
 import './globals.css';
+
+const pixelFont = Press_Start_2P({
+  weight: ['400'],
+  subsets: ['latin'],
+  display: 'block',
+  preload: true,
+});
+
+const monoFont = Space_Mono({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  display: 'block',
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: {
@@ -46,19 +61,10 @@ export default async function RootLayout({
 }>) {
   const theme = await getTheme();
   return (
-    <html lang="ko" className={theme}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html
+      lang="ko"
+      className={`${pixelFont.className} ${monoFont.className} ${theme}`}
+    >
       <body
         suppressHydrationWarning
         className="mx-auto max-w-screen-sm font-mono"
