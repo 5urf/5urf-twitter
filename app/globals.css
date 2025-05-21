@@ -62,6 +62,7 @@
   body {
     background-color: var(--bg-tertiary);
     color: var(--text-primary);
+    font-family: 'Space Mono', monospace;
     transition:
       background-color 0.2s ease,
       color 0.2s ease;
@@ -72,11 +73,18 @@
   h4,
   h5,
   h6 {
-    @apply font-pixel;
+    font-family: 'Press Start 2P', monospace;
   }
 }
 
 @layer components {
+  .font-pixel {
+    font-family: 'Press Start 2P', monospace;
+  }
+
+  .font-mono {
+    font-family: 'Space Mono', monospace;
+  }
   .retro-container {
     @apply border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] p-8;
   }

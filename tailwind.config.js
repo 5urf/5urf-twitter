@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        pixel: ['var(--font-pixel)', 'monospace'],
-        mono: ['var(--font-mono)', 'monospace'],
+        pixel: ['Press Start 2P', 'monospace'],
+        mono: ['Space Mono', 'monospace'],
       },
     },
   },
