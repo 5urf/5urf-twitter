@@ -17,7 +17,6 @@ export default function DarkModeToggle({ initialTheme }: IDarkModeToggleProps) {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
 
     setCurrentTheme(newTheme);
-    document.documentElement.className = newTheme;
 
     startTransition(async () => {
       await setTheme(newTheme);
