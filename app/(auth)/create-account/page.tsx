@@ -3,6 +3,7 @@ import FormButton from '@/components/form/FormButton';
 import FormInput from '@/components/form/FormInput';
 import { ACCOUNT_VALIDATION } from '@/lib/constants';
 import { FileText } from 'lucide-react';
+import Link from 'next/link';
 import { startTransition, useActionState } from 'react';
 import { createAccount } from './actions';
 
@@ -62,6 +63,12 @@ export default function CreateAccountPage() {
           />
           <FormButton text="계정 만들기" type="submit" />
         </form>
+        <Link
+          href="/log-in"
+          className="mt-4 flex justify-center text-sm text-[var(--accent-primary)] transition hover:text-[var(--accent-secondary)] hover:underline"
+        >
+          계정이 이미 있으신가요? 로그인
+        </Link>
       </section>
     </main>
   );
