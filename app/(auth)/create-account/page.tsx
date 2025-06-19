@@ -1,4 +1,5 @@
 'use client';
+import AuthPageHeader from '@/components/auth/AuthPageHeader';
 import FormButton from '@/components/form/FormButton';
 import FormInput from '@/components/form/FormInput';
 import { ACCOUNT_VALIDATION } from '@/lib/constants';
@@ -19,12 +20,7 @@ export default function CreateAccountPage() {
   return (
     <main className="flex min-h-screen items-center justify-center px-4">
       <section className="retro-container w-full max-w-md">
-        <figure className="mb-8 flex flex-col items-center justify-center gap-2">
-          <FileText className="size-14 text-[var(--text-primary)] dark:text-[var(--accent-primary)]" />
-          <h2 className="text-xl text-[var(--text-primary)] dark:text-[var(--accent-primary)]">
-            Create Account
-          </h2>
-        </figure>
+        <AuthPageHeader icon={FileText} title="Create Account" />
         <form onSubmit={onSubmit} className="space-y-4">
           <FormInput
             icon="email"
