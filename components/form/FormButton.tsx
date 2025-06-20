@@ -25,9 +25,9 @@ export default function FormButton({
       disabled={disabled || pending}
       className={cn(
         'retro-button w-full py-3',
-        'border-[var(--accent-primary)] bg-[var(--accent-primary)]',
-        'text-[var(--button-text-on-accent)]',
-        'hover:border-[var(--accent-secondary)] hover:bg-[var(--accent-secondary)]',
+        'border-brand-primary bg-brand-primary',
+        'text-special-button-on-accent',
+        'hover:border-brand-secondary hover:bg-brand-secondary',
         'disabled:cursor-not-allowed disabled:opacity-70',
         className
       )}

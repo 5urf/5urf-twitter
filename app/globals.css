@@ -4,31 +4,29 @@
 
 @layer base {
   :root {
-    --bg-primary: #f9fafb; /* bg-gray-50 */
-    --bg-secondary: #ffffff; /* bg-white */
-    --bg-tertiary: #f3f4f6; /* bg-gray-100 */
+    --bg-primary: #f9fafb;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f3f4f6;
 
-    --text-primary: #111827; /* text-gray-900 */
-    --text-secondary: #6b7280; /* text-gray-500 */
-    --text-tertiary: #9ca3af; /* text-gray-400 */
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --text-tertiary: #9ca3af;
 
-    --border-primary: #d1d5db; /* border-gray-300 */
-    --border-secondary: #e5e7eb; /* border-gray-200 */
+    --border-primary: #d1d5db;
+    --border-secondary: #e5e7eb;
 
-    --accent-primary: #3b82f6; /* text-blue-600 */
-    --accent-secondary: #2563eb; /* hover:bg-blue-700 */
-    --accent-light: #dbeafe; /* bg-blue-100 */
+    --accent-primary: #3b82f6;
+    --accent-secondary: #2563eb;
+    --accent-light: #dbeafe;
 
-    --error: #ef4444; /* text-red-500 */
-    --error-light: #fee2e2; /* bg-red-50 */
-    --success: #10b981; /* text-green-500 */
+    --error: #ef4444;
+    --error-light: #fee2e2;
+    --success: #10b981;
 
-    --hover-bg: #f3f4f6; /* hover:bg-gray-100 */
-    --hover-light: #f9fafb; /* hover:bg-gray-50 */
+    --hover-bg: #f3f4f6;
+    --hover-light: #f9fafb;
 
     --button-text-on-accent: #ffffff;
-
-    --shadow-retro: 0 4px 0 #d1d5db;
   }
 
   :root.dark {
@@ -55,8 +53,6 @@
     --hover-light: #171717;
 
     --button-text-on-accent: #000000;
-
-    --shadow-retro: 0 0 10px rgba(134, 239, 172, 0.1);
   }
 
   body {
