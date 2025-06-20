@@ -44,8 +44,8 @@ module.exports = {
         },
         // 인터랙션 색상
         interaction: {
-          hover: 'var(--hover-bg)',
-          light: 'var(--hover-light)',
+          primary: 'var(--hover-primary)',
+          secondary: 'var(--hover-secondary)',
         },
         // 특수 용도
         special: {

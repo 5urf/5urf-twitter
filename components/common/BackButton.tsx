@@ -34,7 +34,7 @@ export default function BackButton({
         onClick={handleClick}
         className={cn(
           'inline-flex items-center transition-colors',
-          'text-[var(--accent-primary)] hover:text-[var(--accent-secondary)]',
+          'text-brand-primary hover:text-brand-secondary',
           className
         )}
       >

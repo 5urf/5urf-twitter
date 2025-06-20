@@ -23,8 +23,8 @@
     --error-light: #fee2e2;
     --success: #10b981;
 
-    --hover-bg: #f3f4f6;
-    --hover-light: #f9fafb;
+    --hover-primary: #f3f4f6;
+    --hover-secondary: #f9fafb;
 
     --button-text-on-accent: #ffffff;
   }
@@ -49,8 +49,8 @@
     --error-light: #450a0a;
     --success: #86efac;
 
-    --hover-bg: #1f1f1f;
-    --hover-light: #171717;
+    --hover-primary: #1f1f1f;
+    --hover-secondary: #171717;
 
     --button-text-on-accent: #000000;
   }
