@@ -19,16 +19,14 @@ export default function TabItem({
       href={href}
       className={cn(
         'flex flex-col items-center px-1 py-3',
-        'transition-colors hover:bg-[var(--hover-light)] dark:hover:bg-[var(--hover-bg)]',
-        isActive && 'bg-[var(--hover-light)] dark:bg-[var(--hover-bg)]'
+        'transition-colors hover:bg-interaction-primary',
+        isActive && 'bg-interaction-primary'
       )}
     >
       <div
         className={cn(
           'mb-1',
-          isActive
-            ? 'text-[var(--accent-primary)]'
-            : 'text-[var(--text-secondary)]'
+          isActive ? 'text-brand-primary' : 'text-content-secondary'
         )}
       >
         {icon}
@@ -36,9 +34,7 @@ export default function TabItem({
       <span
         className={cn(
           'font-pixel text-xs',
-          isActive
-            ? 'text-[var(--accent-primary)]'
-            : 'text-[var(--text-secondary)]'
+          isActive ? 'text-brand-primary' : 'text-content-secondary'
         )}
       >
         {label}
