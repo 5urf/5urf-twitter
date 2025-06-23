@@ -22,7 +22,7 @@ export default function UserWithdrawalButton() {
         onClick={handleOpenModal}
         className={cn(
           'flex w-full items-center justify-between p-4 text-left transition',
-          'text-[var(--error)] hover:bg-[var(--error-light)]'
+          'text-status-error hover:bg-status-error-light'
         )}
       >
         <span className="text-base">회원 탈퇴</span>

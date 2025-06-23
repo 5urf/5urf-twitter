@@ -15,11 +15,9 @@ export default function EmptyState({
 }: IEmptyStateProps) {
   return (
     <div className={cn('retro-container p-6 text-center', containerClassName)}>
-      <p className={cn('text-[var(--text-secondary)]', className)}>{title}</p>
+      <p className={cn('text-content-secondary', className)}>{title}</p>
       {description && (
-        <p className="mt-2 text-sm text-[var(--text-tertiary)]">
-          {description}
-        </p>
+        <p className="mt-2 text-sm text-content-secondary">{description}</p>
       )}
     </div>
   );

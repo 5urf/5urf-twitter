@@ -61,7 +61,7 @@ export default function CreateAccountPage() {
         </form>
         <Link
           href="/log-in"
-          className="mt-4 flex justify-center text-sm text-[var(--accent-primary)] transition hover:text-[var(--accent-secondary)] hover:underline"
+          className="mt-4 flex justify-center text-sm text-brand-primary transition hover:text-brand-secondary hover:underline"
         >
           계정이 이미 있으신가요? 로그인
         </Link>

@@ -62,13 +62,11 @@ export default function ResponseEditMode({
   return (
     <div className="p-4">
       <div className="mb-2 flex justify-between">
-        <span className="font-medium text-[var(--text-primary)]">
-          댓글 수정
-        </span>
+        <span className="font-medium text-content-primary">댓글 수정</span>
         <div
           className={cn(
             'text-sm',
-            isOverLimit ? 'text-[var(--error)]' : 'text-[var(--text-secondary)]'
+            isOverLimit ? 'text-status-error' : 'text-content-secondary'
           )}
         >
           {`${charCount}/${TWEET_VALIDATION.MAX_LENGTH}`}
@@ -79,7 +77,7 @@ export default function ResponseEditMode({
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          className="retro-input min-h-20 w-full p-3 text-base placeholder:text-[var(--text-secondary)] focus:border-[var(--accent-primary)]"
+          className="retro-input min-h-20 w-full p-3 text-base placeholder:text-content-secondary focus:border-brand-primary"
           rows={3}
           maxLength={TWEET_VALIDATION.MAX_LENGTH}
           disabled={isPending}
@@ -93,8 +91,8 @@ export default function ResponseEditMode({
             onClick={onCancelAction}
             className={cn(
               'retro-button px-3 py-1 text-sm',
-              'border-[var(--border-primary)] bg-[var(--bg-tertiary)]',
-              'hover:bg-[var(--hover-light)]'
+              'border-outline-primary bg-surface-tertiary',
+              'hover:bg-interaction-secondary'
             )}
             disabled={isPending}
           >
@@ -105,8 +103,8 @@ export default function ResponseEditMode({
             loadingText="저장 중..."
             className={cn(
               'w-auto px-3 py-1 text-sm',
-              'border-[var(--accent-primary)] bg-[var(--accent-primary)]',
-              'text-black hover:border-[var(--accent-secondary)] hover:bg-[var(--accent-secondary)]'
+              'border-brand-primary bg-brand-primary',
+              'text-special-button-on-accent hover:border-brand-primary hover:bg-brand-secondary'
             )}
             disabled={isInvalid}
           />

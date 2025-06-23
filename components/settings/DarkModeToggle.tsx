@@ -29,12 +29,12 @@ export default function DarkModeToggle({ initialTheme }: IDarkModeToggleProps) {
       disabled={isPending}
       className={cn(
         'flex w-full items-center justify-between p-4 transition',
-        'hover:bg-[var(--hover-light)] dark:hover:bg-[var(--hover-bg)]'
+        'hover:bg-interaction-primary'
       )}
     >
       <span className="flex items-center gap-3">
         {currentTheme === 'dark' ? (
-          <Moon className="size-5 text-[var(--accent-primary)]" />
+          <Moon className="size-5 text-brand-primary" />
         ) : (
           <Monitor className="size-5" />
         )}
@@ -44,7 +44,7 @@ export default function DarkModeToggle({ initialTheme }: IDarkModeToggleProps) {
         <div className="retro-container h-6 w-12 p-0">
           <div
             className={cn(
-              'absolute top-1 size-4 bg-[var(--accent-primary)] transition-transform',
+              'absolute top-1 size-4 bg-brand-primary transition-transform',
               currentTheme === 'dark' ? 'translate-x-6' : 'translate-x-1'
             )}
           />

@@ -161,7 +161,7 @@ export default async function TweetDetailPage({
     <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
       <BackButton fallbackPath="/" />
       <div className="retro-container overflow-hidden p-0">
-        <div className="border-b-2 border-[var(--border-primary)] p-5">
+        <div className="border-b-2 border-outline-primary p-5">
           <Link
             href={`/users/${encodeURIComponent(tweet.user.username)}`}
             className="username-link"
@@ -169,7 +169,7 @@ export default async function TweetDetailPage({
             {tweet.user.username}
           </Link>
         </div>
-        <div className="border-b-2 border-[var(--border-primary)] p-5">
+        <div className="border-b-2 border-outline-primary p-5">
           <p className="whitespace-pre-wrap text-lg">{tweet.tweet}</p>
           <div className="mt-4 text-xs text-gray-500">
             {formatToKorDate(tweet.created_at)}
@@ -190,8 +190,8 @@ export default async function TweetDetailPage({
                   href={`/tweets/${id}/edit`}
                   className={cn(
                     'retro-button px-4 py-2 text-sm font-medium',
-                    'border-[var(--accent-primary)] bg-[var(--accent-primary)]',
-                    'text-white hover:bg-[var(--accent-secondary)] dark:text-black'
+                    'border-brand-primary bg-brand-primary',
+                    'text-white hover:bg-brand-secondary dark:text-black'
                   )}
                 >
                   수정

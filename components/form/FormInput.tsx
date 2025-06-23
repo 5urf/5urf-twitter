@@ -20,7 +20,7 @@ export default function FormInput({
   const hasError = errorMessages.length > 0;
 
   const renderIcon = () => {
-    const iconClass = 'size-5 text-[var(--accent-primary)]';
+    const iconClass = 'size-5 text-brand-primary';
     switch (icon) {
       case 'email':
         return <Mail className={iconClass} />;
@@ -42,9 +42,10 @@ export default function FormInput({
         <input
           className={cn(
             'retro-input w-full py-3 pl-12 pr-4',
-            'focus:border-[var(--accent-primary)] focus:outline-none focus:ring-0',
-            'transition placeholder:text-[var(--text-secondary)]',
-            hasError && 'border-[var(--error)] ring-1 ring-[var(--error)]',
+            'focus:border-brand-primary focus:outline-none focus:ring-0',
+            'placeholder:text-content-secondary transition',
+            hasError &&
+              'border-status-error ring-statuborder-status-error ring-1',
             className
           )}
           {...props}
@@ -53,7 +54,7 @@ export default function FormInput({
       {hasError && (
         <div className="px-1">
           {errorMessages.map((error, index) => (
-            <small key={index} className="block text-[var(--error)]">
+            <small key={index} className="text-status-error block">
               {error}
             </small>
           ))}

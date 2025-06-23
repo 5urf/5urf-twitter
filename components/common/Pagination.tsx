@@ -45,7 +45,7 @@ export default function Pagination({
           'retro-button p-2 transition',
           isPrevDisabled
             ? 'cursor-not-allowed opacity-50'
-            : 'hover:bg-[var(--hover-light)] dark:hover:bg-[var(--hover-bg)]'
+            : 'hover:bg-interaction-primary'
         )}
         aria-disabled={isPrevDisabled}
         tabIndex={isPrevDisabled ? -1 : undefined}
@@ -53,7 +53,7 @@ export default function Pagination({
         <ChevronLeft className="size-5" />
       </Link>
 
-      <span className="retro-button bg-[var(--bg-secondary)] px-4 py-2 text-sm">
+      <span className="retro-button bg-surface-secondary px-4 py-2 text-sm">
         {currentPage} / {totalPages}
       </span>
 
@@ -65,7 +65,7 @@ export default function Pagination({
           'retro-button p-2 transition',
           isNextDisabled
             ? 'cursor-not-allowed opacity-50'
-            : 'hover:bg-[var(--hover-light)] dark:hover:bg-[var(--hover-bg)]'
+            : 'hover:bg-interaction-primary'
         )}
         aria-disabled={isNextDisabled}
         tabIndex={isNextDisabled ? -1 : undefined}

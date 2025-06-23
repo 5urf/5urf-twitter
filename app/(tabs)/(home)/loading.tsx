@@ -6,7 +6,7 @@ export default function LoadingHome() {
     <main className="mx-auto max-w-lg px-4 pb-10 pt-10">
       <PageHeader title="HOME" />
       <div className="retro-container mb-6">
-        <div className="min-h-20 w-full border-2 border-[var(--border-primary)] bg-[var(--bg-tertiary)] p-3" />
+        <div className="min-h-20 w-full border-2 border-outline-primary bg-surface-tertiary p-3" />
         <div className="mt-3 flex justify-end">
           <Skeleton className="h-10 w-20" />
         </div>

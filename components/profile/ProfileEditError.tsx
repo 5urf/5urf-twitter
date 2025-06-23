@@ -9,14 +9,14 @@ export default function ProfileEditError({ username }: IProfileEditErrorProps) {
   return (
     <main className="mx-auto max-w-lg px-4 pb-20 pt-5">
       <div className="retro-container p-6 text-center">
-        <p className={cn('text-[var(--error)]')}>
+        <p className={cn('text-status-error')}>
           프로필 정보를 불러오는데 실패했습니다.
         </p>
         <Link
           href={`/users/${username}`}
           className={cn(
             'mt-4 inline-block',
-            'text-[var(--accent-primary)] hover:text-[var(--accent-secondary)]',
+            'text-brand-primary hover:text-brand-secondary',
             'hover:underline'
           )}
         >
