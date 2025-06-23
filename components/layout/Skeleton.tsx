@@ -6,8 +6,6 @@ interface ISkeletonProps {
 
 export default function Skeleton({ className }: ISkeletonProps) {
   return (
-    <div
-      className={cn('animate-pulse bg-[var(--border-secondary)]', className)}
-    />
+    <div className={cn('animate-pulse bg-outline-secondary', className)} />
   );
 }

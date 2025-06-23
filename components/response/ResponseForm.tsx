@@ -69,7 +69,7 @@ export default function ResponseForm({
             name="content"
             value={responseText}
             onChange={(e) => setResponseText(e.target.value)}
-            className="retro-input min-h-20 w-full p-3 text-base placeholder:text-[var(--text-secondary)] focus:border-[var(--accent-primary)]"
+            className="retro-input min-h-20 w-full p-3 text-base placeholder:text-content-secondary focus:border-brand-primary"
             rows={3}
             placeholder="댓글을 작성해주세요."
             maxLength={TWEET_VALIDATION.MAX_LENGTH}

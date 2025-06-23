@@ -103,12 +103,7 @@ export default function ResponseContainer({
 
   return (
     <div className="mt-6">
-      <h3
-        className={cn(
-          'mb-4 text-base font-medium',
-          'text-[var(--text-primary)] dark:text-[var(--accent-primary)]'
-        )}
-      >
+      <h3 className={cn('mb-4 text-base font-medium text-brand-primary')}>
         댓글 {optimisticResponses.length}개
       </h3>
 

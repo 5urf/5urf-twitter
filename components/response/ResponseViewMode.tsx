@@ -70,9 +70,7 @@ export default function ResponseViewMode({
             {username}
           </Link>
           {isPending && (
-            <span className="text-xs text-[var(--accent-primary)]">
-              (게시 중...)
-            </span>
+            <span className="text-xs text-brand-primary">(게시 중...)</span>
           )}
         </div>
 
@@ -82,7 +80,7 @@ export default function ResponseViewMode({
               onClick={onEditClickAction}
               className={cn(
                 'text-sm transition-colors',
-                'text-[var(--accent-primary)] hover:text-[var(--accent-secondary)]'
+                'text-brand-primary hover:text-brand-secondary'
               )}
             >
               수정
@@ -92,7 +90,7 @@ export default function ResponseViewMode({
               disabled={isDeleting}
               className={cn(
                 'text-sm transition-colors',
-                'text-[var(--error)] hover:text-[var(--error)]',
+                'text-status-error hover:text-status-error',
                 'disabled:cursor-not-allowed disabled:opacity-50'
               )}
             >

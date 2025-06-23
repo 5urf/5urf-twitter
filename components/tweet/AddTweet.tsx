@@ -41,22 +41,20 @@ export default function AddTweet() {
           name="tweet"
           value={tweetText}
           onChange={handleTextChange}
-          className="retro-input min-h-20 w-full p-3 text-base placeholder:text-[var(--text-secondary)] focus:border-[var(--accent-primary)]"
+          className="retro-input min-h-20 w-full p-3 text-base placeholder:text-content-secondary focus:border-brand-primary"
           placeholder="무슨 일이 일어나고 있나요?"
           rows={3}
           maxLength={TWEET_VALIDATION.MAX_LENGTH}
           minLength={TWEET_VALIDATION.MIN_LENGTH}
         />
         <div className="mt-2 flex items-center justify-between">
-          <small className="text-sm text-[var(--error)]">
+          <small className="text-sm text-status-error">
             {state.fieldErrors?.tweet}
           </small>
           <div
             className={cn(
               'text-sm',
-              isOverLimit
-                ? 'text-[var(--error)]'
-                : 'text-[var(--text-secondary)]'
+              isOverLimit ? 'text-status-error' : 'text-content-secondary'
             )}
           >
             {`${charCount}/${TWEET_VALIDATION.MAX_LENGTH}`}

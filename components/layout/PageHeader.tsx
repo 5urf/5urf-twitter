@@ -8,10 +8,7 @@ interface IPageHeaderProps {
 export default function PageHeader({ title, className }: IPageHeaderProps) {
   return (
     <h1
-      className={cn(
-        'mb-6 font-pixel text-2xl text-[var(--accent-primary)]',
-        className
-      )}
+      className={cn('mb-6 font-pixel text-2xl text-brand-primary', className)}
     >
       {title}
     </h1>
