@@ -28,14 +28,14 @@ const TweetList = ({
             href={`/tweets/${tweet.id}`}
             className={cn(
               '-m-4 block p-4 transition',
-              'hover:bg-[var(--hover-light)] dark:hover:bg-[var(--hover-bg)]'
+              'hover:bg-interaction-primary'
             )}
           >
-            <div className="font-medium text-[var(--accent-primary)]">
+            <div className="text-brand-primary font-medium">
               {tweet.user.username}
             </div>
             <p className="mt-1 whitespace-pre-wrap">{tweet.tweet}</p>
-            <div className="mt-2 flex items-center justify-between text-xs text-[var(--text-secondary)]">
+            <div className="text-content-secondary mt-2 flex items-center justify-between text-xs">
               <span>{formatToKorDate(tweet.created_at)}</span>
               <div className="flex items-center space-x-4">
                 <span className="flex items-center">

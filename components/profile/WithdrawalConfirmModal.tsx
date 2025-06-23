@@ -43,20 +43,16 @@ export default function WithdrawalConfirmModal({
 
   return (
     <ModalWrapper isOpen={isOpen} onCloseAction={onCloseAction}>
-      <h2 className="mb-4 text-lg font-medium text-[var(--error)]">
-        회원 탈퇴
-      </h2>
+      <h2 className="mb-4 text-lg font-medium text-status-error">회원 탈퇴</h2>
       <div className="mb-6">
-        <p className="mb-2 text-[var(--text-primary)]">
-          정말로 탈퇴하시겠습니까?
-        </p>
-        <p className="text-sm text-[var(--text-secondary)]">
+        <p className="mb-2 text-content-primary">정말로 탈퇴하시겠습니까?</p>
+        <p className="text-sm text-content-secondary">
           • 모든 트윗, 좋아요, 댓글이 삭제됩니다.
         </p>
-        <p className="text-sm text-[var(--text-secondary)]">
+        <p className="text-sm text-content-secondary">
           • 삭제된 데이터는 복구할 수 없습니다.
         </p>
-        <p className="text-sm text-[var(--text-secondary)]">
+        <p className="text-sm text-content-secondary">
           • 동일한 이메일로 재가입이 가능합니다.
         </p>
       </div>
@@ -74,7 +70,7 @@ export default function WithdrawalConfirmModal({
           <button
             type="button"
             onClick={onCloseAction}
-            className="retro-button border-[var(--border-primary)] bg-[var(--bg-secondary)] px-4 py-2 hover:bg-[var(--hover-light)]"
+            className="retro-button border-outline-primary bg-surface-secondary px-4 py-2 hover:bg-interaction-secondary"
           >
             취소
           </button>
@@ -82,7 +78,7 @@ export default function WithdrawalConfirmModal({
             text="탈퇴하기"
             loadingText="처리 중..."
             type="submit"
-            className="w-auto border-[var(--error)] bg-[var(--error)] px-4 py-2 hover:border-[var(--error)] hover:bg-[var(--error)] hover:opacity-90"
+            className="w-auto border-status-error bg-status-error px-4 py-2 hover:border-status-error hover:bg-status-error hover:opacity-90"
           />
         </div>
       </form>

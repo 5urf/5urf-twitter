@@ -72,7 +72,7 @@ export default function EditTweetForm({ tweet }: IEditTweetFormProps) {
           name="tweet"
           value={tweetText}
           onChange={handleTextChange}
-          className="retro-input min-h-20 w-full p-3 text-base placeholder:text-[var(--text-secondary)] focus:border-[var(--accent-primary)]"
+          className="retro-input min-h-20 w-full p-3 text-base placeholder:text-content-secondary focus:border-brand-primary"
           rows={5}
           maxLength={TWEET_VALIDATION.MAX_LENGTH}
           minLength={TWEET_VALIDATION.MIN_LENGTH}
@@ -82,9 +82,7 @@ export default function EditTweetForm({ tweet }: IEditTweetFormProps) {
           <div
             className={cn(
               'text-sm',
-              isOverLimit
-                ? 'text-[var(--error)]'
-                : 'text-[var(--text-secondary)]'
+              isOverLimit ? 'text-status-error' : 'text-content-secondary'
             )}
           >
             {`${charCount}/${TWEET_VALIDATION.MAX_LENGTH}`}
@@ -96,7 +94,7 @@ export default function EditTweetForm({ tweet }: IEditTweetFormProps) {
             loadingText="수정 중..."
             type="submit"
             disabled={isInvalid}
-            className="w-auto border-[var(--accent-primary)] bg-[var(--accent-primary)] px-4 py-2 text-[var(--button-text-on-accent)] hover:border-[var(--accent-secondary)] hover:bg-[var(--accent-secondary)] disabled:border-[var(--border-secondary)] disabled:bg-[var(--border-secondary)]"
+            className="w-auto border-brand-primary bg-brand-primary px-4 py-2 text-special-button-on-accent hover:border-brand-secondary hover:bg-brand-secondary disabled:border-outline-secondary disabled:bg-outline-secondary"
           />
         </div>
       </form>

@@ -71,12 +71,7 @@ export default function ProfileEditPage({ params }: IProfileEditPageProps) {
       <BackButton
         fallbackPath={`/users/${encodeURIComponent(decodedUsername)}`}
       />
-      <h1
-        className={cn(
-          'mb-6 text-xl font-medium',
-          'text-[var(--text-primary)] dark:text-[var(--accent-primary)]'
-        )}
-      >
+      <h1 className={cn('mb-6 text-xl font-medium text-brand-primary')}>
         프로필 편집
       </h1>
       {optimisticProfile && (

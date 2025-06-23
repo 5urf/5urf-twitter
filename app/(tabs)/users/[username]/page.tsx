@@ -108,7 +108,7 @@ export default async function UserProfilePage({
       <PageHeader title="PROFILE" />
       <div className="retro-container mb-6 p-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-medium text-[var(--accent-primary)]">
+          <h1 className="text-xl font-medium text-brand-primary">
             {user.username}
           </h1>
           {isOwner && (
@@ -116,9 +116,9 @@ export default async function UserProfilePage({
               href={`/users/${user.username}/edit`}
               className={cn(
                 'retro-button flex items-center gap-1 px-4 py-2 text-sm',
-                'border-[var(--accent-primary)] bg-[var(--accent-primary)]',
-                'text-[var(--button-text-on-accent)] transition-colors',
-                'hover:border-[var(--accent-secondary)] hover:bg-[var(--accent-secondary)]'
+                'border-brand-primary bg-brand-primary',
+                'text-special-button-on-accent transition-colors',
+                'hover:border-brand-secondary hover:bg-brand-secondary'
               )}
             >
               <Pencil className="mr-1 size-4" />
@@ -127,19 +127,12 @@ export default async function UserProfilePage({
           )}
         </div>
         {user.bio && <p className="mt-3 whitespace-pre-wrap">{user.bio}</p>}
-        <div className="mt-4 text-sm text-[var(--text-secondary)]">
+        <div className="mt-4 text-sm text-content-secondary">
           가입일: {formatToKorDateOnly(user.created_at)}
         </div>
       </div>
 
-      <h2
-        className={cn(
-          'mb-4 text-lg',
-          'text-[var(--text-primary)] dark:text-[var(--accent-primary)]'
-        )}
-      >
-        작성한 트윗
-      </h2>
+      <h2 className={cn('mb-4 text-lg text-brand-primary')}>작성한 트윗</h2>
       {tweets.length > 0 ? (
         <>
           <TweetList tweets={tweets} />

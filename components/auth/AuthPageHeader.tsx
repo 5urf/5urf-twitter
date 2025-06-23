@@ -19,10 +19,8 @@ export default function AuthPageHeader({
         className
       )}
     >
-      <Icon className="size-14 text-[var(--accent-primary)] dark:text-[var(--accent-primary)]" />
-      <h2 className="text-xl text-[var(--accent-primary)] dark:text-[var(--accent-primary)]">
-        {title}
-      </h2>
+      <Icon className="text-brand-primary size-14" />
+      <h2 className="text-brand-primary text-xl">{title}</h2>
     </figure>
   );
 }

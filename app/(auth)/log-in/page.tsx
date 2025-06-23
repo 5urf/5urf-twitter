@@ -43,7 +43,7 @@ export default function LoginPage() {
         </form>
         <Link
           href="/create-account"
-          className="retro-button mt-4 flex justify-center border-[var(--border-primary)] bg-[var(--bg-tertiary)] py-3 text-sm text-[var(--text-primary)] hover:bg-[var(--hover-light)]"
+          className="retro-button mt-4 flex justify-center border-outline-primary bg-surface-tertiary py-3 text-sm text-content-primary hover:bg-interaction-secondary"
         >
           회원가입
         </Link>

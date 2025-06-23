@@ -30,15 +30,15 @@ export default function SearchForm({ initialQuery = '' }: ISearchFormProps) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="검색어를 입력하세요."
-          className="retro-input w-full py-3 pl-3 pr-12 focus:border-[var(--accent-primary)]"
+          className="retro-input w-full py-3 pl-3 pr-12 focus:border-brand-primary"
         />
         <button
           type="submit"
           className={cn(
             'absolute right-0 top-0 h-full px-4 transition-colors',
             disabled
-              ? 'cursor-not-allowed text-[var(--text-tertiary)]'
-              : 'cursor-pointer text-[var(--accent-primary)]'
+              ? 'cursor-not-allowed text-content-tertiary'
+              : 'cursor-pointer text-brand-primary'
           )}
           disabled={disabled}
         >

@@ -25,8 +25,8 @@ export default function ResponseList({
         <div
           key={response.id}
           className={cn(
-            'border-b-2 border-[var(--border-primary)] last:border-b-0',
-            response.id < 0 && 'bg-[var(--accent-light)]'
+            'border-b-2 border-brand-primary last:border-b-0',
+            response.id < 0 && 'bg-brand-light'
           )}
         >
           <ResponseItem

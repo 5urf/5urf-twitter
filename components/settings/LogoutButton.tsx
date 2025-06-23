@@ -16,7 +16,7 @@ export default function LogoutButton() {
       onClick={handleLogout}
       className={cn(
         'flex w-full items-center justify-between p-4 text-left transition',
-        'text-[var(--error)] hover:bg-[var(--hover-light)]'
+        'text-status-error hover:bg-interaction-secondary'
       )}
     >
       <span className="text-base">로그아웃</span>
