@@ -8,7 +8,6 @@ import {
   getPageFromSearchParams,
   getPaginationParams,
 } from '@/lib/pagination';
-import { Prisma } from '@prisma/client';
 import { Metadata } from 'next';
 
 async function getTotalPages(pageSize: number) {
@@ -44,8 +43,6 @@ async function getTweets(page: number, pageSize: number) {
 
   return tweets;
 }
-
-export type Tweets = Prisma.PromiseReturnType<typeof getTweets>;
 
 interface IHomePagePageProps {
   searchParams: Promise<{ page?: string }>;
