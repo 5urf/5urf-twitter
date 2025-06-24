@@ -1,29 +1,16 @@
 'use client';
 
 import { searchTweets } from '@/app/(tabs)/search/actions';
-import { Tweet } from '@prisma/client';
+import { SearchResult } from '@/types/database';
 import { useEffect, useState } from 'react';
 import Pagination from '../common/Pagination';
 import EmptyState from '../layout/EmptyState';
 import TweetList from '../tweet/TweetList';
 import SearchLoadingSkeleton from './SearchLoadingSkeleton';
 
-type SearchResultTweet = Tweet & {
-  user: {
-    username: string;
-  };
-  _count: {
-    likes: number;
-    responses: number;
-  };
-};
-
 interface ISearchResultsProps {
   hasSearched: boolean;
-  initialResults: {
-    tweets: SearchResultTweet[];
-    totalPages: number;
-  };
+  initialResults: SearchResult;
   query: string;
   currentPage: number;
 }

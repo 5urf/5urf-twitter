@@ -2,8 +2,12 @@
 
 import db from '@/lib/db';
 import { DEFAULT_PAGE_SIZE, getPaginationParams } from '@/lib/pagination';
+import { SearchResult } from '@/types/database';
 
-export async function searchTweets(query: string, page: number = 1) {
+export async function searchTweets(
+  query: string,
+  page: number = 1
+): Promise<SearchResult> {
   if (!query.trim()) return { tweets: [], totalPages: 1 };
 
   const pageSize = DEFAULT_PAGE_SIZE;
