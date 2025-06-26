@@ -1,9 +1,9 @@
 import { cn } from '@/lib/utils';
-import { ResponseType } from '@/types/response';
+import { PendingResponse } from '@/types/database';
 import ResponseItem from './ResponseItem';
 
 interface IResponseListProps {
-  responses: ResponseType[];
+  responses: PendingResponse[];
   currentUserId: number;
   onUpdateSuccessAction?: (id: number, content: string) => void;
   onDeleteSuccessAction?: (id: number) => void;
@@ -34,7 +34,7 @@ export default function ResponseList({
             content={response.content}
             created_at={response.created_at}
             username={response.user.username}
-            isPending={response.id < 0}
+            isPending={response.isPending || response.id < 0}
             isOwner={response.user.id === currentUserId}
             onUpdateSuccessAction={onUpdateSuccessAction}
             onDeleteSuccessAction={onDeleteSuccessAction}

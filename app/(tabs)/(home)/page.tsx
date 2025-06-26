@@ -8,6 +8,7 @@ import {
   getPageFromSearchParams,
   getPaginationParams,
 } from '@/lib/pagination';
+import { TweetWithCounts } from '@/types/database';
 import { Metadata } from 'next';
 
 async function getTotalPages(pageSize: number) {
@@ -17,7 +18,10 @@ async function getTotalPages(pageSize: number) {
   return totalPages;
 }
 
-async function getTweets(page: number, pageSize: number) {
+async function getTweets(
+  page: number,
+  pageSize: number
+): Promise<TweetWithCounts[]> {
   const { skip, take } = getPaginationParams(page, pageSize);
 
   const tweets = await db.tweet.findMany({
