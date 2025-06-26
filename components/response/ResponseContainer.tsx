@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { ResponseType } from '@/types/response';
+import { PendingResponse } from '@/types/database';
 import { useCallback, useOptimistic } from 'react';
 import ResponseForm from './ResponseForm';
 import ResponseList from './ResponseList';
@@ -25,7 +25,7 @@ interface IDeleteAction {
 type ResponseAction = IUpdateAction | IAddAction | IDeleteAction;
 
 interface IResponseContainerProps {
-  initialResponses: ResponseType[];
+  initialResponses: PendingResponse[];
   tweetId: number;
   currentUsername: string;
   currentUserId: number;
@@ -38,11 +38,11 @@ export default function ResponseContainer({
   currentUserId,
 }: IResponseContainerProps) {
   const [optimisticResponses, updateOptimisticResponses] = useOptimistic<
-    ResponseType[],
+    PendingResponse[],
     ResponseAction
   >(initialResponses, (state, update) => {
     if (update.type === 'add') {
-      const newItem: ResponseType = {
+      const newItem: PendingResponse = {
         id: -Math.random(),
         content: update.content,
         created_at: new Date(),

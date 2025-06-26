@@ -8,7 +8,7 @@ import {
   getPageFromSearchParams,
   getPaginationParams,
 } from '@/lib/pagination';
-import { Prisma } from '@prisma/client';
+import { TweetWithCounts } from '@/types/database';
 import { Metadata } from 'next';
 
 async function getTotalPages(pageSize: number) {
@@ -18,7 +18,10 @@ async function getTotalPages(pageSize: number) {
   return totalPages;
 }
 
-async function getTweets(page: number, pageSize: number) {
+async function getTweets(
+  page: number,
+  pageSize: number
+): Promise<TweetWithCounts[]> {
   const { skip, take } = getPaginationParams(page, pageSize);
 
   const tweets = await db.tweet.findMany({
@@ -44,8 +47,6 @@ async function getTweets(page: number, pageSize: number) {
 
   return tweets;
 }
-
-export type Tweets = Prisma.PromiseReturnType<typeof getTweets>;
 
 interface IHomePagePageProps {
   searchParams: Promise<{ page?: string }>;
