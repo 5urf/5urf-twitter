@@ -1,12 +1,12 @@
-import { Tweets } from '@/app/(tabs)/(home)/page';
 import { formatToKorDate } from '@/lib/format';
 import { cn } from '@/lib/utils';
+import { TweetWithCounts } from '@/types/database';
 import { Heart, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import EmptyState from '../layout/EmptyState';
 
 interface ITweetListProps {
-  tweets: Tweets;
+  tweets: TweetWithCounts[];
   className?: string;
   emptyMessage?: string;
 }
@@ -31,11 +31,11 @@ const TweetList = ({
               'hover:bg-interaction-primary'
             )}
           >
-            <div className="text-brand-primary font-medium">
+            <div className="font-medium text-brand-primary">
               {tweet.user.username}
             </div>
             <p className="mt-1 whitespace-pre-wrap">{tweet.tweet}</p>
-            <div className="text-content-secondary mt-2 flex items-center justify-between text-xs">
+            <div className="mt-2 flex items-center justify-between text-xs text-content-secondary">
               <span>{formatToKorDate(tweet.created_at)}</span>
               <div className="flex items-center space-x-4">
                 <span className="flex items-center">

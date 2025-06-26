@@ -8,12 +8,13 @@ import { formatToKorDate } from '@/lib/format';
 import { getSession } from '@/lib/session';
 import { getCurrentUser } from '@/lib/user';
 import { cn } from '@/lib/utils';
+import { LikeStatus, Response, TweetDetail } from '@/types/database';
 import { Metadata } from 'next';
 import { unstable_cache as nextCache } from 'next/cache';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-async function getTweet(id: number) {
+async function getTweet(id: number): Promise<TweetDetail | null> {
   const tweet = await db.tweet.findUnique({
     where: { id },
     include: {
@@ -39,7 +40,10 @@ const getCachedTweet = nextCache(getTweet, ['tweet-detail'], {
   revalidate: 60,
 });
 
-async function getLikeStatus(tweetId: number, userId: number) {
+async function getLikeStatus(
+  tweetId: number,
+  userId: number
+): Promise<LikeStatus> {
   const isLike = await db.like.findUnique({
     where: {
       userId_tweetId: {
@@ -61,7 +65,7 @@ async function getLikeStatus(tweetId: number, userId: number) {
   };
 }
 
-async function getResponses(tweetId: number) {
+async function getResponses(tweetId: number): Promise<Response[]> {
   const responses = await db.response.findMany({
     where: {
       tweetId,
