@@ -8,7 +8,7 @@ import { formatToKorDate } from '@/lib/format';
 import { getSession } from '@/lib/session';
 import { getCurrentUser } from '@/lib/user';
 import { cn } from '@/lib/utils';
-import { LikeStatus, PendingResponse, TweetDetail } from '@/types/database';
+import { LikeStatus, Response, TweetDetail } from '@/types/database';
 import { Metadata } from 'next';
 import { unstable_cache as nextCache } from 'next/cache';
 import Link from 'next/link';
@@ -65,7 +65,7 @@ async function getLikeStatus(
   };
 }
 
-async function getResponses(tweetId: number): Promise<PendingResponse[]> {
+async function getResponses(tweetId: number): Promise<Response[]> {
   const responses = await db.response.findMany({
     where: {
       tweetId,
